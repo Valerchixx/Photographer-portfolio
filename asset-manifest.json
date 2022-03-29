@@ -1,0 +1,35 @@
+{
+  "files": {
+    "main.css": "/web-react/static/css/main.d15608a2.css",
+    "main.js": "/web-react/static/js/main.c982972c.js",
+    "static/js/787.42b157f3.chunk.js": "/web-react/static/js/787.42b157f3.chunk.js",
+    "static/media/profile.svg": "/web-react/static/media/profile.915ba89e91f71887392382cd140c056f.svg",
+    "static/media/item2.jpg": "/web-react/static/media/item2.549e5c36f9c2b2b4f1d0.jpg",
+    "static/media/item1.jpg": "/web-react/static/media/item1.229269bfffe9fde12cfa.jpg",
+    "static/media/item3.jpg": "/web-react/static/media/item3.6571f8f9de7cd25daf6e.jpg",
+    "static/media/item4.jpg": "/web-react/static/media/item4.4c2da679bd96cacff877.jpg",
+    "static/media/project1.jpg": "/web-react/static/media/project1.566ed43e0db25d665bc1.jpg",
+    "static/media/gallery4.jpg": "/web-react/static/media/gallery4.37b90f189754944bc3ac.jpg",
+    "static/media/project3.jpg": "/web-react/static/media/project3.4b8e6ae9fd1b0b48092b.jpg",
+    "static/media/gallery3.jpg": "/web-react/static/media/gallery3.e43e539ffeb8a10c5b62.jpg",
+    "static/media/gallery6.jpg": "/web-react/static/media/gallery6.9e7c9702bd4c05e4d89a.jpg",
+    "static/media/gallery1.jpg": "/web-react/static/media/gallery1.7440f2875d3ee3a4968f.jpg",
+    "static/media/project2.jpg": "/web-react/static/media/project2.b570f247801e61d44dcc.jpg",
+    "static/media/logo.svg": "/web-react/static/media/logo.1690579aee141df734f44e5a5d5d46a0.svg",
+    "static/media/icon1.svg": "/web-react/static/media/icon1.5f503be326caf96f94354ddf025e17a1.svg",
+    "static/media/icon2.svg": "/web-react/static/media/icon2.ec2d7b3b279ba8bb47481c8f8e53d995.svg",
+    "static/media/icon4.svg": "/web-react/static/media/icon4.af2b3c1de9645a85d75053cdd6552fac.svg",
+    "static/media/icon5.svg": "/web-react/static/media/icon5.5d0ee41bb43d7b1c443a5d02846055d7.svg",
+    "static/media/icon3.svg": "/web-react/static/media/icon3.773d9c02d405b748ab4a20b88c2f7e25.svg",
+    "index.html": "/web-react/index.html",
+    "static/media/arrow.svg": "/web-react/static/media/arrow.cf4eef8bb306707576f1eac071f0b50c.svg",
+    "static/media/envelope.svg": "/web-react/static/media/envelope.825e99fd745a4f7dd6dbf8a3978e0f49.svg",
+    "main.d15608a2.css.map": "/web-react/static/css/main.d15608a2.css.map",
+    "main.c982972c.js.map": "/web-react/static/js/main.c982972c.js.map",
+    "787.42b157f3.chunk.js.map": "/web-react/static/js/787.42b157f3.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.d15608a2.css",
+    "static/js/main.c982972c.js"
+  ]
+}
