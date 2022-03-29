@@ -1,0 +1,17 @@
+.btn{
+    color: #fff;
+    font-size: 18px;
+    background: #9D9D9D;
+    border: none;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    padding: 15px 30px;
+}
+.btn img{
+    margin-right: 10px;
+}
+.btn:hover{
+    opacity: 0.8;
+}

@@ -1,0 +1,41 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body{
+    font-family: 'Manrope', sans-serif;
+}
+
+.headerWrapper{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 0;
+}
+
+
+
+
+.linkHeader{
+    color: rgba(222, 222, 222, 1);
+    text-decoration: none;
+    font-size: 18px;
+    padding-right: 50px;
+    font-weight: bold;
+    transition: .3s all;
+
+}
+.linkHeader:hover{
+    text-decoration: underline;
+    transition: .3s ease;
+}
+
+@media  (max-width:992px){
+    .navWrap{
+        display: none;
+    }
+    .headerWrapper{
+        justify-content: center;
+    }
+}

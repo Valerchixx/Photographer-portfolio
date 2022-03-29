@@ -1,0 +1,29 @@
+.item{
+    max-width: 300px;
+    padding: 8px;
+    border-radius: 12px;
+}
+
+.explorationsCol1, .explorationsCol2{
+    display: flex;
+    justify-content: center;
+}
+.explorationsWrap{
+    margin-top: 70px;
+}
+
+@media(max-width:1200px){
+    .item{
+        max-width: 250px;
+    }
+}
+@media(max-width:992px){
+    .explorationsCol2{
+        display: none;
+    }
+    .explorationsCol1{
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+}
