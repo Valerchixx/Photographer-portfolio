@@ -11,14 +11,14 @@ function Explorations() {
   return (
     <div className={styles.explorationsWrap}>
       <div className={styles.explorationsCol1}>
-        <div><img className={`${styles.item} ${styles.item1}`} src={item1} alt="" /></div>
-        <div><img className={`${styles.item} ${styles.item2}`} src={item2} alt="" /></div>
-        <div><img className={`${styles.item} ${styles.item3}`} src={item3} alt="" /></div>
+        <div><img className={`${styles.item} ${styles.item1}`} src={item1} alt="item img" /></div>
+        <div><img className={`${styles.item} ${styles.item2}`} src={item2} alt="item img" /></div>
+        <div><img className={`${styles.item} ${styles.item3}`} src={item3} alt="item img" /></div>
       </div>
       <div className={styles.explorationsCol2}>
-        <div><img className={`${styles.item} ${styles.item4}`} src={item4} alt="" /></div>
-        <div><img className={`${styles.item} ${styles.item5}`} src={item5} alt="" /></div>
-        <div><img className={`${styles.item} ${styles.item6}`} src={item6} alt="" /></div>
+        <div><img className={`${styles.item} ${styles.item4}`} src={item4} alt="item img" /></div>
+        <div><img className={`${styles.item} ${styles.item5}`} src={item5} alt="item img" /></div>
+        <div><img className={`${styles.item} ${styles.item6}`} src={item6} alt="item img" /></div>
       </div>
     </div>
   );

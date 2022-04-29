@@ -1,9 +1,7 @@
-/* eslint-disable no-unused-vars */
-import React, { useRef, useState } from 'react';
+import React, { useRef } from 'react';
 import styles from './Component/css/home.module.css';
 import profile from './Component/images/profile.svg';
 import Header from './Component/Header';
-import arr from './Component/images/arrow.svg';
 import Button from './Component/Button';
 import Featured from './Component/Featured';
 import Title from './Component/Title';
@@ -12,11 +10,11 @@ import Projects from './Component/Projects';
 import Footer from './Component/Footer';
 
 function Home() {
-  const [sections] = useState({
-    featured: useRef(null),
-    projects: useRef(null),
-    footer: useRef(null),
-  });
+  const featuredRef = useRef(null);
+
+  const projectsRef = useRef(null);
+
+  const footerRef = useRef(null);
 
   const goToSection = (section) => window.scrollTo({ top: section.current.offsetTop, behavior: 'smooth' });
   return (
@@ -24,9 +22,9 @@ function Home() {
       <div className={styles.header}>
         <div className={styles.container}>
           <Header
-            goToFeatured={() => goToSection(sections.featured)}
-            goToProjects={() => goToSection(sections.projects)}
-            goToFooter={() => goToSection(sections.footer)}
+            goToFeatured={() => goToSection(featuredRef)}
+            goToProjects={() => goToSection(projectsRef)}
+            goToFooter={() => goToSection(featuredRef)}
           />
         </div>
       </div>
@@ -49,12 +47,12 @@ function Home() {
               </div>
             </div>
             <div className={styles.imgWrap}>
-              <img src={profile} alt="" />
+              <img src={profile} alt="profile img" />
             </div>
           </div>
         </div>
       </div>
-      <div id={styles.featured} ref={sections.featured} className={styles.feautured}>
+      <div id={styles.featured} ref={featuredRef} className={styles.feautured}>
         <div className={styles.container}>
           <Featured />
         </div>
@@ -65,7 +63,7 @@ function Home() {
           <Explorations />
         </div>
       </div>
-      <div ref={sections.projects} className={styles.projects}>
+      <div ref={projectsRef} className={styles.projects}>
         <div className={styles.container}>
           <Title text="Personal Projects" />
           <Projects />
@@ -83,7 +81,7 @@ function Home() {
           </div>
         </div>
       </div>
-      <div ref={sections.footer} className={styles.footer}>
+      <div ref={footerRef} className={styles.footer}>
         <div className={styles.container}>
           <Footer />
         </div>

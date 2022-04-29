@@ -18,11 +18,11 @@ function Footer() {
         </p>
       </div>
       <div className={styles.icons}>
-        <div><img className={styles.icon} src={icon1} alt="" /></div>
-        <div><img className={styles.icon} src={icon2} alt="" /></div>
-        <div><img className={styles.icon} src={icon3} alt="" /></div>
-        <div><img className={styles.icon} src={icon4} alt="" /></div>
-        <div><img className={styles.icon} src={icon5} alt="" /></div>
+        <div><img className={styles.icon} src={icon1} alt="icon" /></div>
+        <div><img className={styles.icon} src={icon2} alt="icon" /></div>
+        <div><img className={styles.icon} src={icon3} alt="icon" /></div>
+        <div><img className={styles.icon} src={icon4} alt="icon" /></div>
+        <div><img className={styles.icon} src={icon5} alt="icon" /></div>
       </div>
     </div>
   );

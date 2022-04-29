@@ -17,7 +17,7 @@ function Featured() {
         <div className={styles.featuredCol1}>
           <div className={`${styles.featuredItem} ${styles.featuredItem1}`}>
             <div className={styles.ItemImg}>
-              <img className={`${styles.item} ${styles.item1}`} src={item1} alt="" />
+              <img className={`${styles.item} ${styles.item1}`} src={item1} alt="item1 img" />
               <div className={styles.overlayFeatured}>
                 <p className={styles.overlayP}>InVersion</p>
               </div>
@@ -25,7 +25,7 @@ function Featured() {
           </div>
           <div className={`${styles.featuredItem} ${styles.featuredItem2}`}>
             <div className={styles.ItemImg}>
-              <img className={`${styles.item} ${styles.item2}`} src={item2} alt="" />
+              <img className={`${styles.item} ${styles.item2}`} src={item2} alt="item2 img" />
               <div className={styles.overlayFeatured}>
                 <div><p className={styles.overlayP}>InVersion</p></div>
               </div>
@@ -35,7 +35,7 @@ function Featured() {
         <div className={styles.featuredCol2}>
           <div className={`${styles.featuredItem} ${styles.featuredItem3}`}>
             <div className={styles.ItemImg}>
-              <img className={`${styles.item} ${styles.item3}`} src={item3} alt="" />
+              <img className={`${styles.item} ${styles.item3}`} src={item3} alt="item3 img" />
               <div className={styles.overlayFeatured}>
                 <p className={styles.overlayP}>InVersion</p>
               </div>
@@ -43,7 +43,7 @@ function Featured() {
           </div>
           <div className={`${styles.featuredItem} ${styles.featuredItem4}`}>
             <div className={styles.ItemImg}>
-              <img className={`${styles.item} ${styles.item4}`} src={item4} alt="" />
+              <img className={`${styles.item} ${styles.item4}`} src={item4} alt="item 4 img" />
               <div className={styles.overlayFeatured}>
                 <p className={styles.overlayP}>InVersion</p>
               </div>

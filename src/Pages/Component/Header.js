@@ -8,7 +8,7 @@ function Header({ goToFeatured, goToFooter, goToProjects }) {
     <div>
       <div className={styles.headerWrapper}>
         <div className={styles.logoWrap}>
-          <img src={logo} alt="" />
+          <img src={logo} alt="logo" />
         </div>
         <div className={styles.navWrap}>
           <a className={styles.linkHeader} onClick={goToFeatured} href="#">Featured</a>
@@ -21,9 +21,9 @@ function Header({ goToFeatured, goToFooter, goToProjects }) {
 }
 
 Header.propTypes = {
-  goToFeatured: PropTypes.string.isRequired,
-  goToProjects: PropTypes.string.isRequired,
-  goToFooter: PropTypes.string.isRequired,
+  goToFeatured: PropTypes.func.isRequired,
+  goToProjects: PropTypes.func.isRequired,
+  goToFooter: PropTypes.func.isRequired,
 
 };
 
