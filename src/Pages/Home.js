@@ -22,7 +22,7 @@ class Home extends React.Component {
     };
     this.featuredRef = React.createRef(null);
     this.projectsRef = React.createRef(null);
-    this.featuredRef = React.createRef(null);
+    this.footerRef = React.createRef(null);
   }
 
   render() {
@@ -32,9 +32,9 @@ class Home extends React.Component {
         <div className={styles.header}>
           <div className={styles.container}>
             <Header
-              goToFeatured={() => this.goToSection(this.featuredRef)}
-              goToProjects={() => this.goToSection(this.projectsRef)}
-              goToFooter={() => this.goToSection(this.featuredRef)}
+              goToFeatured={() => Home.goToSection(this.featuredRef)}
+              goToProjects={() => Home.goToSection(this.projectsRef)}
+              goToFooter={() => Home.goToSection(this.footerRef)}
             />
           </div>
         </div>
