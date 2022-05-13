@@ -1,0 +1,78 @@
+
+table {
+    font-family: Arial, Helvetica, sans-serif;
+    border-collapse: collapse;
+    font-size: 20px;
+    margin: 0 auto
+
+}
+.title{
+    text-align: center;
+    margin-top: 30px;
+}
+.addUser{
+    width: 90px;
+    height: 35px;
+   text-align: center;
+   margin-left: 50px;
+   margin-bottom: 50px;
+   border:  none;
+   border-radius: 3px;
+   background-color: #04AA6D;
+   color: white;
+}
+
+.addUser:hover{
+    opacity: 0.9;
+}
+
+
+   td, th {
+    border: 2px solid rgb(181, 179, 179);
+    padding: 15px;
+    width: 180px;
+  }
+th {
+    padding-top: 15px;
+    padding-bottom: 15px;
+    text-align: left;
+    background-color: #04AA6D;
+    color: white;
+  }
+.btnDel{
+    width: 80px;
+    height: 35px;
+    font-family: Arial, Helvetica, sans-serif;
+    margin-top: 10px;
+    border: none;
+    background-color: rgb(227, 49, 49);
+    color: #fff;
+    border-radius: 2px;
+}
+.btnDel:hover{
+    opacity: 0.9;
+}
+
+.searchInput{
+    margin-left: 25px;
+    width: 120px;
+    height: 28px;
+}
+.btnSearch{
+    width: 80px;
+    height: 28px;
+    background-color: rgb(110, 110, 236);
+    color: #fff;
+    font-size: 14px;
+    border: none;
+    border-radius: 2px;
+    font-weight: 500;
+    margin-left: 20px;
+}
+.btnSearch:hover{
+    opacity: 0.9;
+}
+.btnTd{
+    border: none;
+    padding: 5px;
+}
