@@ -1,4 +1,3 @@
-/* eslint-disable no-unused-vars */
 import React, { useState } from 'react';
 import people from './utils/people';
 import styles from './css/table.module.css';

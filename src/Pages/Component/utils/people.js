@@ -1,16 +1,16 @@
 const people = [
   {
     id: 124,
-    biography: 'lore,fekwrje',
+    biography: 'some text',
     name: {
       firstName: 'Valeriy',
-      lastName: 'Meladze',
+      lastName: 'Korobkov',
     },
     date: '10.07.2000',
   },
   {
     id: 789,
-    biography: 'lore,fekwrje',
+    biography: 'some text',
     name: {
       firstName: 'Marina',
       lastName: 'kit',
@@ -19,7 +19,7 @@ const people = [
   },
   {
     id: 456,
-    biography: 'lore,fekwrje',
+    biography: 'some text',
     name: {
       firstName: 'Oleg',
       lastName: 'Tihonov',
@@ -28,7 +28,7 @@ const people = [
   },
   {
     id: 43,
-    biography: 'lore,fekwrje',
+    biography: 'some text',
     name: {
       firstName: 'Misha',
       lastName: 'krut',
@@ -37,7 +37,7 @@ const people = [
   },
   {
     id: 589,
-    biography: 'lore,fekwrje',
+    biography: 'some text',
     name: {
       firstName: 'Alina',
       lastName: 'Aninkova',
@@ -46,7 +46,7 @@ const people = [
   },
   {
     id: 346,
-    biography: 'lore,fekwrje',
+    biography: 'some text',
     name: {
       firstName: 'Kira',
       lastName: 'Osipova',
@@ -55,7 +55,7 @@ const people = [
   },
   {
     id: 78,
-    biography: 'lore,fekwrje',
+    biography: 'some text',
     name: {
       firstName: 'Pasha',
       lastName: 'Belkin',
