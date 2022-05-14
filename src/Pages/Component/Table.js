@@ -46,14 +46,26 @@ function Table() {
     setArr(searchElem);
   };
 
+  const updateObj = (index) => {
+    const items = [...arr];
+    items[index] = { ...items[index], biography: update.biography };
+    setArr(items);
+  };
+
   return (
     <>
       <h1 className={styles.title}>Table</h1>
-      <button type="button" onClick={() => setFlag(!flag)} className={styles.addUser}>AddUser</button>
-      <input type="text" placeholder="enter id" name="id" onChange={handleGetData} className={styles.searchInput} />
-      <button type="button" onClick={handleSearch} className={styles.btnSearch}>search</button>
-      <input type="text" placeholder="enter biography" name="biography" onChange={handleGetData} className={styles.updateInput} />
-      <button type="button" className={styles.btnUpdate}>update</button>
+      <a href="/web-react" className={styles.linkHome}>go home</a>
+      <div className={styles.wrapper}>
+        <div>
+          <button type="button" onClick={() => setFlag(!flag)} className={styles.addUser}>AddUser</button>
+          <input type="text" placeholder="enter id" name="id" onChange={handleGetData} className={styles.searchInput} />
+          <button type="button" onClick={handleSearch} className={styles.btnSearch}>search</button>
+        </div>
+        <div>
+          <input type="text" placeholder="enter biography" name="biography" onChange={handleGetData} className={styles.updateInput} />
+        </div>
+      </div>
       <table className={styles.table}>
         <thead>
           <tr>
@@ -61,12 +73,13 @@ function Table() {
             <th className={styles.title}>LastName</th>
             <th className={styles.title}>Id</th>
             <th className={styles.title}>Biograhy</th>
-            <th className={styles.title}>date</th>
+            <th className={styles.title}>Date</th>
+            <th className={styles.title}>Del and upd</th>
           </tr>
         </thead>
         <tbody>
           {flag && <UserInputs arr={arr} setArr={setArr} setFlag={setFlag} />}
-          {arr.sort((a, b) => ((a.id > b.id) ? 1 : ((b.id > a.id) ? -1 : 0))).map((item) => (
+          {arr.sort((a, b) => ((a.id > b.id) ? 1 : ((b.id > a.id) ? -1 : 0))).map((item, i) => (
             <tr key={item.id}>
               <Person
                 key={item.id}
@@ -76,7 +89,11 @@ function Table() {
                 biography={item.biography}
                 date={item.date}
               />
-              <td className={styles.btnTd}><button type="button" className={styles.btnDel} onClick={() => handleDelete(item.id)}>delte user</button></td>
+              <td className={styles.btnTd}>
+                <button type="button" className={styles.btnDel} onClick={() => handleDelete(item.id)}>delte user</button>
+                <button type="button" className={styles.btnUpdate} onClick={() => updateObj(i)}>update</button>
+
+              </td>
             </tr>
           ))}
         </tbody>

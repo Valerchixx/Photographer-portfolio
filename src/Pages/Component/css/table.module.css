@@ -3,12 +3,13 @@ table {
     font-family: Arial, Helvetica, sans-serif;
     border-collapse: collapse;
     font-size: 20px;
-    margin: 0 auto
+    margin: 0 auto;
 
 }
 .title{
     text-align: center;
     margin-top: 30px;
+    margin-bottom: 30px;
 }
 .addUser{
     width: 90px;
@@ -54,7 +55,7 @@ th {
 }
 
 .searchInput{
-    margin-left: 25px;
+    margin-left: 45px;
     width: 120px;
     height: 28px;
 }
@@ -67,7 +68,7 @@ th {
     border: none;
     border-radius: 2px;
     font-weight: 500;
-    margin-left: 20px;
+    margin-left: 15px;
 }
 .btnSearch:hover{
     opacity: 0.9;
@@ -75,4 +76,39 @@ th {
 .btnTd{
     border: none;
     padding: 5px;
+}
+.btnUpdate{
+    width: 80px;
+    height: 35px;
+    font-family: Arial, Helvetica, sans-serif;
+    margin-left: 8px;
+    border: none;
+    background-color: rgb(178, 77, 246);
+    color: #fff;
+    border-radius: 2px;
+
+}
+.btnUpdate:hover{
+    opacity: 0.9;
+}
+.wrapper{
+    display: flex;
+    justify-content: space-around;
+    align-items: baseline;
+}
+.updateInput{
+    width: 180px;
+    height: 28px;
+
+}
+.linkHome{
+    position: absolute;
+    top: 30px;
+    left: 40px;
+    color: rgb(108, 108, 228);
+    text-decoration: none;
+
+}
+.linkHome:hover{
+    text-decoration: underline;
 }
