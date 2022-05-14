@@ -1,12 +1,12 @@
 import React from 'react';
 import './App.css';
 import {
-  BrowserRouter as Router,
+  HashRouter as Router,
   Routes,
   Route,
 } from 'react-router-dom';
 import Home from './Pages/Home';
-import Table from './Pages/Component/Table';
+import Table from './Pages/Table';
 
 function App() {
   return (
