@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
-import people from './utils/people';
-import styles from './css/table.module.css';
-import Person from './Person';
-import UserInputs from './UserInputs';
+import people from './Component/utils/people';
+import styles from './Component/css/table.module.css';
+import Person from './Component/Person';
+import UserInputs from './Component/UserInputs';
 
 function Table() {
   const [flag, setFlag] = useState(false);
