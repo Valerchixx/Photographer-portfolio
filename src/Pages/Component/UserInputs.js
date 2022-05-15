@@ -29,8 +29,8 @@ function UserInputs({ setArr, setFlag }) {
       biography: elem.biography,
       date: elem.date,
     };
-    setArr((array) => [...array, newObj]);
-    setFlag(false);
+    setArr(newObj);
+    setFlag();
   };
 
   return (
