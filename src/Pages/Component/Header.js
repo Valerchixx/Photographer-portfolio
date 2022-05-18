@@ -7,7 +7,7 @@ function Header({ goToFeatured, goToFooter, goToProjects }) {
   return (
     <div>
       <div className={styles.headerWrapper}>
-        <div className={styles.logoWrap}>
+        <div>
           <img src={logo} alt="logo" />
         </div>
         <div className={styles.navWrap}>

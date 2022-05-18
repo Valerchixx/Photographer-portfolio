@@ -37,10 +37,10 @@ class Home extends React.Component {
             />
           </div>
         </div>
-        <div className={styles.intro}>
+        <div>
           <div className={styles.container}>
             <div className={styles.introInner}>
-              <div className={styles.textWrap}>
+              <div>
                 <h2 className={styles.introH2}>
                   Hi, I am
                   {' '}
@@ -53,7 +53,7 @@ class Home extends React.Component {
                   {description}
                 </p>
                 <div className={styles.introBtn}>
-                  <Button />
+                  <Button gmail="v.proshachenko@gmail.com" />
                 </div>
               </div>
               <div className={styles.imgWrap}>
@@ -62,24 +62,24 @@ class Home extends React.Component {
             </div>
           </div>
         </div>
-        <div id={styles.featured} ref={this.featuredRef} className={styles.feautured}>
+        <div id={styles.featured} ref={this.featuredRef}>
           <div className={styles.container}>
             <Featured />
           </div>
         </div>
-        <div className={styles.explorations}>
+        <div>
           <div className={styles.container}>
             <Title text="Visual Explorations" />
             <Explorations />
           </div>
         </div>
-        <div ref={this.projectsRef} className={styles.projects}>
+        <div ref={this.projectsRef}>
           <div className={styles.container}>
             <Title text="Personal Projects" />
             <Projects />
           </div>
         </div>
-        <div className={styles.contact}>
+        <div>
           <div className={styles.container}>
             <Title text="Contact Me" />
             <p className={styles.contactParag}>
@@ -87,11 +87,11 @@ class Home extends React.Component {
               I’m currently available for freelance work
             </p>
             <div className={styles.contactBtnWrap}>
-              <Button />
+              <Button gmail="v.proshachenko@gmail.com" />
             </div>
           </div>
         </div>
-        <div ref={this.footerRef} className={styles.footer}>
+        <div ref={this.footerRef}>
           <div className={styles.container}>
             <Footer />
           </div>

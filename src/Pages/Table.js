@@ -115,7 +115,6 @@ class Table extends React.Component {
                 <td className={styles.btnTd}>
                   <button type="button" className={styles.btnDel} onClick={() => this.handleDelete(item.id)}>delte user</button>
                   <button type="button" className={styles.btnUpdate} onClick={() => this.updateObj(i)}>update</button>
-
                 </td>
               </tr>
             ))}
