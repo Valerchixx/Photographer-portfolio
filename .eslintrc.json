@@ -24,6 +24,7 @@
         "react/jsx-boolean-value": "off",
         "no-nested-ternary": "off",
         "no-param-reassign": 0,
-        "eslint max-len": "off"
+        "eslint max-len": "off",
+        "react/forbid-prop-types":"off"
     }
 }

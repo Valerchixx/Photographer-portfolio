@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import styles from './css/userInputs.module.css';
+import UserInputsView from './UserInputsView';
 
 function UserInputs({ setArr, setFlag }) {
   const [elem, setElem] = useState({
@@ -34,15 +34,12 @@ function UserInputs({ setArr, setFlag }) {
   };
 
   return (
-    <tr>
-      {placeholders.map((item) => (
-        <td key={item.id}>
-          <input key={item.id} type="text" onChange={handleData} className={styles.input} name={item} placeholder={item} />
+    <UserInputsView
+      placeholders={placeholders}
+      handleAddUsers={handleAddUsers}
+      handleData={handleData}
+    />
 
-        </td>
-      ))}
-      <td className={styles.btnTd}><button type="button" onClick={handleAddUsers} className={styles.btn}>add</button></td>
-    </tr>
   );
 }
 

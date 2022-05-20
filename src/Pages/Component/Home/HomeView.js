@@ -1,39 +1,28 @@
 import React from 'react';
-import profile from './Component/images/profile.svg';
-import styles from './Component/css/home.module.css';
-import Header from './Component/Header';
-import Button from './Component/Button';
-import Featured from './Component/Featured';
-import Title from './Component/Title';
-import Explorations from './Component/Explorations';
-import Projects from './Component/Projects';
-import Footer from './Component/Footer';
+import PropTypes from 'prop-types';
+import profile from '../../../images/profile.svg';
+import styles from '../../../css/home.module.css';
+import Header from '../Header/Header';
+import Button from '../Button/Button';
+import Featured from '../Featured/Featured';
+import Title from '../Title/Title';
+import Explorations from '../Explorations/Explorations';
+import Projects from '../Projects/Projects';
+import Footer from '../Footer/Footer';
 
-class Home extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      name: 'Alexander',
-      description: ` I help businesses and companies reach
-      their goals by designing user-centric digital
-      products & interactive experiences.`,
-    };
-    this.featuredRef = React.createRef(null);
-    this.projectsRef = React.createRef(null);
-    this.footerRef = React.createRef(null);
-    this.goToSection = (section) => window.scrollTo({ top: section.current.offsetTop, behavior: 'smooth' });
-  }
-
+class HomeView extends React.PureComponent {
   render() {
-    const { name, description } = this.state;
+    const {
+      name, description, goToSection, footerRef, projectsRef, featuredRef,
+    } = this.props;
     return (
       <div className={styles.wrappers}>
         <div className={styles.header}>
           <div className={styles.container}>
             <Header
-              goToFeatured={() => this.goToSection(this.featuredRef)}
-              goToProjects={() => this.goToSection(this.projectsRef)}
-              goToFooter={() => this.goToSection(this.footerRef)}
+              goToFeatured={() => goToSection(featuredRef)}
+              goToProjects={() => goToSection(projectsRef)}
+              goToFooter={() => goToSection(footerRef)}
             />
           </div>
         </div>
@@ -62,7 +51,7 @@ class Home extends React.Component {
             </div>
           </div>
         </div>
-        <div id={styles.featured} ref={this.featuredRef}>
+        <div id={styles.featured} ref={featuredRef}>
           <div className={styles.container}>
             <Featured />
           </div>
@@ -73,7 +62,7 @@ class Home extends React.Component {
             <Explorations />
           </div>
         </div>
-        <div ref={this.projectsRef}>
+        <div ref={projectsRef}>
           <div className={styles.container}>
             <Title text="Personal Projects" />
             <Projects />
@@ -91,7 +80,7 @@ class Home extends React.Component {
             </div>
           </div>
         </div>
-        <div ref={this.footerRef}>
+        <div ref={footerRef}>
           <div className={styles.container}>
             <Footer />
           </div>
@@ -100,5 +89,13 @@ class Home extends React.Component {
     );
   }
 }
+HomeView.propTypes = {
+  name: PropTypes.string.isRequired,
+  description: PropTypes.string.isRequired,
+  goToSection: PropTypes.func.isRequired,
+  footerRef: PropTypes.func.isRequired,
+  projectsRef: PropTypes.func.isRequired,
+  featuredRef: PropTypes.func.isRequired,
 
-export default Home;
+};
+export default HomeView;

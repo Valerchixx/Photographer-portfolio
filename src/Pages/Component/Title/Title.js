@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import styles from './css/title.module.css';
+import styles from '../../../css/title.module.css';
 
 function Title({ text }) {
   return (

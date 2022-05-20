@@ -1,23 +1,15 @@
 import React from 'react';
-import styles from './css/featured.module.css';
-import arrow from './images/arrow.svg';
-import item1 from './images/item1.jpg';
-import item2 from './images/item2.jpg';
-import item3 from './images/item3.jpg';
-import item4 from './images/item4.jpg';
+import PropTypes from 'prop-types';
+import styles from '../../../css/featured.module.css';
+import arrow from '../../../images/arrow.svg';
+import item1 from '../../../images/item1.jpg';
+import item2 from '../../../images/item2.jpg';
+import item3 from '../../../images/item3.jpg';
+import item4 from '../../../images/item4.jpg';
 
-class Featured extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      featuredTitle: 'Featured Work',
-      imgTitle: 'InVersion',
-
-    };
-  }
-
+class FeaturedView extends React.PureComponent {
   render() {
-    const { featuredTitle, imgTitle } = this.state;
+    const { imgTitle, featuredTitle } = this.props;
     return (
       <div>
         <div className={styles.descr}>
@@ -66,4 +58,9 @@ class Featured extends React.Component {
     );
   }
 }
-export default Featured;
+FeaturedView.propTypes = {
+  imgTitle: PropTypes.string.isRequired,
+  featuredTitle: PropTypes.string.isRequired,
+
+};
+export default FeaturedView;

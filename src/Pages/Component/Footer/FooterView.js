@@ -1,22 +1,15 @@
 import React from 'react';
-import icon1 from './images/icon1.svg';
-import icon2 from './images/icon2.svg';
-import icon3 from './images/icon3.svg';
-import icon4 from './images/icon4.svg';
-import icon5 from './images/icon5.svg';
-import styles from './css/footer.module.css';
+import PropTypes from 'prop-types';
+import icon1 from '../../../images/icon1.svg';
+import icon2 from '../../../images/icon2.svg';
+import icon3 from '../../../images/icon3.svg';
+import icon4 from '../../../images/icon4.svg';
+import icon5 from '../../../images/icon5.svg';
+import styles from '../../../css/footer.module.css';
 
-class Footer extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      name: 'Valeria Proshachenko',
-      date: '2021',
-    };
-  }
-
+class FooterView extends React.PureComponent {
   render() {
-    const { name, date } = this.state;
+    const { name, date } = this.props;
     return (
       <div className={styles.footerWrap}>
         <div>
@@ -42,5 +35,9 @@ class Footer extends React.Component {
     );
   }
 }
+FooterView.propTypes = {
+  date: PropTypes.string.isRequired,
+  name: PropTypes.string.isRequired,
 
-export default Footer;
+};
+export default FooterView;
