@@ -9,11 +9,18 @@ import Title from '../Title/Title';
 import Explorations from '../Explorations/Explorations';
 import Projects from '../Projects/Projects';
 import Footer from '../Footer/Footer';
+import Display from '../Display/Display';
 
 class HomeView extends React.PureComponent {
   render() {
     const {
-      name, description, goToSection, footerRef, projectsRef, featuredRef,
+      name,
+      description,
+      goToSection,
+      footerRef,
+      projectsRef,
+      featuredRef,
+      timer,
     } = this.props;
     return (
       <div className={styles.wrappers}>
@@ -24,6 +31,7 @@ class HomeView extends React.PureComponent {
               goToProjects={() => goToSection(projectsRef)}
               goToFooter={() => goToSection(footerRef)}
             />
+            <Display timer={timer} />
           </div>
         </div>
         <div>
@@ -93,9 +101,9 @@ HomeView.propTypes = {
   name: PropTypes.string.isRequired,
   description: PropTypes.string.isRequired,
   goToSection: PropTypes.func.isRequired,
-  footerRef: PropTypes.func.isRequired,
-  projectsRef: PropTypes.func.isRequired,
-  featuredRef: PropTypes.func.isRequired,
-
+  footerRef: PropTypes.object.isRequired,
+  projectsRef: PropTypes.object.isRequired,
+  featuredRef: PropTypes.object.isRequired,
+  timer: PropTypes.object.isRequired,
 };
 export default HomeView;
