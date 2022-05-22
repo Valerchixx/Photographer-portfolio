@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import React from 'react';
 import PropTypes from 'prop-types';
 import styles from '../../../css/table.module.css';
@@ -8,7 +9,7 @@ class TableView extends React.PureComponent {
   render() {
     const {
       arr, flag, handleDelete, updateObj, handleGetData, updateArray, handleSearch,
-      updateFlag, changeFlag,
+      updateFlag, changeFlag, sortArray,
     } = this.props;
     return (
       <div>
@@ -23,6 +24,7 @@ class TableView extends React.PureComponent {
           <div>
             <input type="text" placeholder="enter biography" name="biography" onChange={handleGetData} className={styles.updateInput} />
           </div>
+          <button type="button" className={styles.btnSort} onClick={sortArray}>Sort</button>
         </div>
         <table className={styles.table}>
           <thead>
@@ -37,7 +39,7 @@ class TableView extends React.PureComponent {
           </thead>
           <tbody>
             {flag && <UserInputs arr={arr} setFlag={updateFlag} setArr={updateArray} />}
-            {arr.sort((a, b) => ((a.id > b.id) ? 1 : ((b.id > a.id) ? -1 : 0))).map((item, i) => (
+            {arr.map((item, i) => (
               <tr key={item.id}>
                 <Person
                   key={item.id}
@@ -69,6 +71,7 @@ TableView.propTypes = {
   updateObj: PropTypes.func.isRequired,
   updateFlag: PropTypes.func.isRequired,
   changeFlag: PropTypes.func.isRequired,
+  sortArray: PropTypes.func.isRequired,
 
 };
 export default TableView;

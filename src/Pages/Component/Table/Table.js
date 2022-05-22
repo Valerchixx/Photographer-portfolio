@@ -1,15 +1,14 @@
-/* eslint-disable react/no-unused-state */
-/* eslint-disable react/destructuring-assignment */
-/* eslint-disable max-len */
 import React from 'react';
 import people from '../../../utils/people';
 import TableView from './TableView';
+import history from '../../../utils/history';
 
 class Table extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       flag: false,
+      flagSort: false,
       arr: people,
       fullarr: people,
       update: {
@@ -38,8 +37,7 @@ class Table extends React.Component {
   handleDelete = (itemId) => {
     const { arr } = this.state;
     const items = arr.filter((item) => item.id !== itemId);
-    this.setState({ arr: items });
-    this.setState({ fullarr: items });
+    this.setState({ arr: items, fullarr: items });
   };
 
   handleGetData = (e) => {
@@ -55,18 +53,17 @@ class Table extends React.Component {
 
   handleSearch = () => {
     const { fullarr, update } = this.state;
-    const searchElem = fullarr.filter((item) => item.id === +update.id);
+    const url = `/table?id=${update.id}`;
+    const searchElem = fullarr.filter((item) => String(Object.values(item)).includes(update.id));
     this.setState({ arr: searchElem });
+    history.push(url);
   };
 
   updateObj = (index) => {
-    this.setState(({ arr, update }) => ({
+    this.setState(({ arr, fullarr, update }) => ({
       arr: [...arr.filter((it, i) => i !== index), { ...arr[index], biography: update.biography }],
-
-    }));
-    this.setState(({ fullarr, update }) => ({
-      arr: [...fullarr.filter((it, i) => i !== index), { ...fullarr[index], biography: update.biography }],
-
+      fullarr: [...fullarr.filter((it, i) => i !== index),
+        { ...fullarr[index], biography: update.biography }],
     }));
   };
 
@@ -77,8 +74,6 @@ class Table extends React.Component {
   updateArray = (newobj) => {
     this.setState((prevState) => ({
       arr: [...prevState.arr, newobj],
-    }));
-    this.setState((prevState) => ({
       fullarr: [...prevState.fullarr, newobj],
     }));
   };
@@ -86,6 +81,20 @@ class Table extends React.Component {
   changeFlag = () => {
     const { flag } = this.state;
     this.setState({ flag: !flag });
+  };
+
+  sortArray = () => {
+    const { arr, flagSort } = this.state;
+    const newArr = [...arr];
+    if (flagSort) {
+      newArr.sort((a, b) => ((a.id < b.id) ? 1 : ((b.id < a.id) ? -1 : 0)));
+    } else {
+      newArr.sort((a, b) => ((a.id > b.id) ? 1 : ((b.id > a.id) ? -1 : 0)));
+    }
+    this.setState((prevState) => ({
+      arr: newArr,
+      flagSort: !prevState.flagSort,
+    }));
   };
 
   render() {
@@ -101,6 +110,7 @@ class Table extends React.Component {
         updateFlag={this.updateFlag}
         updateObj={this.updateObj}
         changeFlag={this.changeFlag}
+        sortArray={this.sortArray}
       />
 
     );
