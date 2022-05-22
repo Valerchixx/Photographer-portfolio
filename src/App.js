@@ -5,8 +5,8 @@ import {
   Routes,
   Route,
 } from 'react-router-dom';
-import Home from './Pages/Component/Home/Home';
-import Table from './Pages/Component/Table/Table';
+import Home from './Pages/Home/Home';
+import Table from './Pages/Table/Table';
 
 function App() {
   return (

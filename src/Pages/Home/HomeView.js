@@ -1,15 +1,15 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import profile from '../../../images/profile.svg';
-import styles from '../../../css/home.module.css';
-import Header from '../Header/Header';
-import Button from '../Button/Button';
-import Featured from '../Featured/Featured';
-import Title from '../Title/Title';
-import Explorations from '../Explorations/Explorations';
-import Projects from '../Projects/Projects';
-import Footer from '../Footer/Footer';
-import Display from '../Display/Display';
+import profile from '../../images/profile.svg';
+import styles from '../../css/home.module.css';
+import Header from '../../Components/Header/Header';
+import Button from '../../Components/Button/Button';
+import Featured from '../../Components/Featured/Featured';
+import Title from '../../Components/Title/Title';
+import Explorations from '../../Components/Explorations/Explorations';
+import Projects from '../../Components/Projects/Projects';
+import Footer from '../../Components/Footer/Footer';
+import Display from '../../Components/Display/Display';
 
 class HomeView extends React.PureComponent {
   render() {

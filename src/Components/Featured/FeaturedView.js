@@ -1,11 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import styles from '../../../css/featured.module.css';
-import arrow from '../../../images/arrow.svg';
-import item1 from '../../../images/item1.jpg';
-import item2 from '../../../images/item2.jpg';
-import item3 from '../../../images/item3.jpg';
-import item4 from '../../../images/item4.jpg';
+import styles from '../../css/featured.module.css';
+import arrow from '../../images/arrow.svg';
+import item1 from '../../images/item1.jpg';
+import item2 from '../../images/item2.jpg';
+import item3 from '../../images/item3.jpg';
+import item4 from '../../images/item4.jpg';
 
 class FeaturedView extends React.PureComponent {
   render() {

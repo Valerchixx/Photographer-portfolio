@@ -1,9 +1,9 @@
 /* eslint-disable no-unused-vars */
 import React from 'react';
 import PropTypes from 'prop-types';
-import styles from '../../../css/table.module.css';
-import Person from '../Person/Person';
-import UserInputs from '../UserInputs/UserInputs';
+import styles from '../../css/table.module.css';
+import Person from '../../Components/Person/Person';
+import UserInputs from '../../Components/UserInputs/UserInputs';
 
 class TableView extends React.PureComponent {
   render() {

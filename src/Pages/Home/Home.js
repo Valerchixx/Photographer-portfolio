@@ -15,9 +15,9 @@ class Home extends React.Component {
         m: 0,
         h: 0,
       },
-      interv: '',
 
     };
+    this.interv = '';
     const { timer } = this.state;
     this.featuredRef = React.createRef(null);
     this.projectsRef = React.createRef(null);
@@ -30,7 +30,7 @@ class Home extends React.Component {
 
     this.start = () => {
       this.run();
-      this.setState({ interv: setInterval(this.run, 10) });
+      this.interv = setInterval(this.run, 10);
     };
 
     this.run = () => {
@@ -55,9 +55,7 @@ class Home extends React.Component {
       });
     };
     this.stop = () => {
-      this.setState((prevState) => ({
-        interv: clearInterval(prevState.interv),
-      }));
+      clearInterval(this.interv);
     };
   }
 

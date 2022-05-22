@@ -1,7 +1,7 @@
 import React from 'react';
-import people from '../../../utils/people';
+import people from '../../utils/people';
 import TableView from './TableView';
-import history from '../../../utils/history';
+import history from '../../utils/history';
 
 class Table extends React.Component {
   constructor(props) {
