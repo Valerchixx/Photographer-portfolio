@@ -59,20 +59,6 @@ th {
     width: 120px;
     height: 28px;
 }
-.btnSearch{
-    width: 80px;
-    height: 28px;
-    background-color: rgb(110, 110, 236);
-    color: #fff;
-    font-size: 14px;
-    border: none;
-    border-radius: 2px;
-    font-weight: 500;
-    margin-left: 15px;
-}
-.btnSearch:hover{
-    opacity: 0.9;
-}
 .btnTd{
     border: none;
     padding: 5px;

@@ -1,4 +1,3 @@
-/* eslint-disable no-unused-vars */
 import React from 'react';
 import PropTypes from 'prop-types';
 import styles from '../../css/table.module.css';
@@ -8,8 +7,8 @@ import UserInputs from '../../Components/UserInputs/UserInputs';
 class TableView extends React.PureComponent {
   render() {
     const {
-      arr, flag, handleDelete, updateObj, handleGetData, updateArray, handleSearch,
-      updateFlag, changeFlag, sortArray,
+      arr, flag, handleDelete, updateObj, handleGetData, updateArray,
+      updateFlag, changeFlag, sortArray, searching,
     } = this.props;
     return (
       <div>
@@ -18,8 +17,7 @@ class TableView extends React.PureComponent {
         <div className={styles.wrapper}>
           <div>
             <button type="button" onClick={changeFlag} className={styles.addUser}>AddUser</button>
-            <input type="text" placeholder="enter id" name="id" onChange={handleGetData} className={styles.searchInput} />
-            <button type="button" onClick={handleSearch} className={styles.btnSearch}>search</button>
+            <input type="text" placeholder="enter id" name="id" onChange={(e) => searching(e)} className={styles.searchInput} />
           </div>
           <div>
             <input type="text" placeholder="enter biography" name="biography" onChange={handleGetData} className={styles.updateInput} />
@@ -67,11 +65,11 @@ TableView.propTypes = {
   updateArray: PropTypes.func.isRequired,
   handleDelete: PropTypes.func.isRequired,
   handleGetData: PropTypes.func.isRequired,
-  handleSearch: PropTypes.func.isRequired,
   updateObj: PropTypes.func.isRequired,
   updateFlag: PropTypes.func.isRequired,
   changeFlag: PropTypes.func.isRequired,
   sortArray: PropTypes.func.isRequired,
+  searching: PropTypes.func.isRequired,
 
 };
 export default TableView;

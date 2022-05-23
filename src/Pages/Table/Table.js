@@ -1,4 +1,5 @@
 import React from 'react';
+import debounce from 'lodash.debounce';
 import people from '../../utils/people';
 import TableView from './TableView';
 import history from '../../utils/history';
@@ -16,6 +17,7 @@ class Table extends React.Component {
         biography: '',
       },
     };
+    this.debonceHandleSearch = debounce(this.handleSearch, 300);
   }
   // sorting without sort function
   // function sorting(arr) {
@@ -49,12 +51,13 @@ class Table extends React.Component {
       },
 
     }));
+    this.debonceHandleSearch();
   };
 
   handleSearch = () => {
     const { fullarr, update } = this.state;
     const url = `/table?id=${update.id}`;
-    const searchElem = fullarr.filter((item) => String(Object.values(item)).includes(update.id));
+    const searchElem = fullarr.filter((item) => String(item.id).includes(update.id));
     this.setState({ arr: searchElem });
     history.push(url);
   };
@@ -83,6 +86,11 @@ class Table extends React.Component {
     this.setState({ flag: !flag });
   };
 
+  searching = (e) => {
+    this.handleGetData(e);
+    this.debonceHandleSearch();
+  };
+
   sortArray = () => {
     const { arr, flagSort } = this.state;
     const newArr = [...arr];
@@ -105,12 +113,12 @@ class Table extends React.Component {
         flag={flag}
         handleDelete={this.handleDelete}
         handleGetData={this.handleGetData}
-        handleSearch={this.handleSearch}
         updateArray={this.updateArray}
         updateFlag={this.updateFlag}
         updateObj={this.updateObj}
         changeFlag={this.changeFlag}
         sortArray={this.sortArray}
+        searching={this.searching}
       />
 
     );
