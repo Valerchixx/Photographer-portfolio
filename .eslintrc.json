@@ -25,6 +25,7 @@
         "no-nested-ternary": "off",
         "no-param-reassign": 0,
         "eslint max-len": "off",
-        "react/forbid-prop-types":"off"
+        "react/forbid-prop-types":"off",
+        "jsx-a11y/control-has-associated-label": "off"
     }
 }

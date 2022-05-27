@@ -16,6 +16,7 @@ class Table extends React.Component {
         id: 0,
         biography: '',
       },
+      activeIndex: 0,
     };
     this.debonceHandleSearch = debounce(this.handleSearch, 300);
   }
@@ -105,8 +106,26 @@ class Table extends React.Component {
     }));
   };
 
+  increment = () => {
+    const { activeIndex } = this.state;
+    if (activeIndex > 0) {
+      this.setState(() => ({
+        activeIndex: activeIndex - 1,
+      }));
+    }
+  };
+
+  decrement = () => {
+    const { activeIndex, arr } = this.state;
+    if (activeIndex < arr.length - 1) {
+      this.setState((prevState) => ({
+        activeIndex: prevState.activeIndex + 1,
+      }));
+    }
+  };
+
   render() {
-    const { flag, arr } = this.state;
+    const { flag, arr, activeIndex } = this.state;
     return (
       <TableView
         arr={arr}
@@ -119,6 +138,9 @@ class Table extends React.Component {
         changeFlag={this.changeFlag}
         sortArray={this.sortArray}
         searching={this.searching}
+        increment={this.increment}
+        decrement={this.decrement}
+        actives={activeIndex}
       />
 
     );

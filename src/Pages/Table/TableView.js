@@ -1,5 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import arrowUp from '../../images/arrowUp.svg';
+import arrowDown from '../../images/arrowDown.svg';
 import styles from '../../css/table.module.css';
 import Person from '../../Components/Person/Person';
 import UserInputs from '../../Components/UserInputs/UserInputs';
@@ -8,7 +10,7 @@ class TableView extends React.PureComponent {
   render() {
     const {
       arr, flag, handleDelete, updateObj, handleGetData, updateArray,
-      updateFlag, changeFlag, sortArray, searching,
+      updateFlag, changeFlag, sortArray, searching, increment, actives, decrement,
     } = this.props;
     return (
       <div>
@@ -23,6 +25,11 @@ class TableView extends React.PureComponent {
             <input type="text" placeholder="enter biography" name="biography" onChange={handleGetData} className={styles.updateInput} />
           </div>
           <button type="button" className={styles.btnSort} onClick={sortArray}>Sort</button>
+        </div>
+        <div className={styles.arrows}>
+          <button onClick={increment} className={styles.arrowUp} type="button"><img className={styles.arrUp} src={arrowUp} alt="" /></button>
+          <button onClick={decrement} className={styles.arrowDown} type="button"><img src={arrowDown} className={styles.arrDown} alt="" /></button>
+
         </div>
         <table className={styles.table}>
           <thead>
@@ -46,6 +53,8 @@ class TableView extends React.PureComponent {
                   id={item.id}
                   biography={item.biography}
                   date={item.date}
+                  active={actives}
+                  index={i}
                 />
                 <td className={styles.btnTd}>
                   <button type="button" className={styles.btnDel} onClick={() => handleDelete(item.id)}>delte user</button>
@@ -70,6 +79,9 @@ TableView.propTypes = {
   changeFlag: PropTypes.func.isRequired,
   sortArray: PropTypes.func.isRequired,
   searching: PropTypes.func.isRequired,
+  increment: PropTypes.func.isRequired,
+  decrement: PropTypes.func.isRequired,
+  actives: PropTypes.number.isRequired,
 
 };
 export default TableView;
