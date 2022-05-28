@@ -15,6 +15,7 @@ class Home extends React.Component {
         m: 0,
         h: 0,
       },
+      time: 0,
 
     };
     this.interv = '';
@@ -28,29 +29,16 @@ class Home extends React.Component {
     this.updateS = timer.s;
     this.updateMs = timer.ms;
 
-    this.start = () => {
-      this.run();
-      this.interv = setInterval(this.run, 10);
-    };
-
     this.run = () => {
-      if (this.updateM === 60) {
-        this.updateH += 1;
-        this.updateM = 0;
-      }
-      if (this.updateS === 60) {
-        this.updateM += 1;
-        this.updateS = 0;
-      }
-      if (this.updateMs === 100) {
-        this.updateS += 1;
-        this.updateMs = 0;
-      }
-      this.updateMs += 1;
-      return this.setState({
-        timer:
-        {
-          ms: this.updateMs, m: this.updateM, s: this.updateS, h: this.updateH,
+      const { time } = this.state;
+      const currentTime = +new Date();
+      this.updateMs = Math.floor(((currentTime - time) / 10) % 100);
+      this.updateS = Math.floor(((currentTime - time) / 1000) % 60);
+      this.updateM = Math.floor(((currentTime - time) / 1000 / 60) % 60);
+      this.updateH = Math.floor(((currentTime - time) / (1000 * 60 * 60)) % 24);
+      this.setState({
+        timer: {
+          ms: this.updateMs, s: this.updateS, m: this.updateM, h: this.updateH,
         },
       });
     };
@@ -60,7 +48,10 @@ class Home extends React.Component {
   }
 
   componentDidMount() {
-    this.start();
+    this.setState({ time: +new Date() });
+    this.interv = setInterval(() => {
+      this.run();
+    }, 100);
   }
 
   componentWillUnmount() {
