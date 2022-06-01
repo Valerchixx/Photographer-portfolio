@@ -26,6 +26,7 @@
         "no-param-reassign": 0,
         "eslint max-len": "off",
         "react/forbid-prop-types":"off",
-        "jsx-a11y/control-has-associated-label": "off"
+        "jsx-a11y/control-has-associated-label": "off",
+        "consistent-return": "off"
     }
 }

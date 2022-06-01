@@ -1,6 +1,6 @@
 const people = [
   {
-    id: 124,
+    id: 4,
     biography: 'some text',
     name: {
       firstName: 'Valeriy',
@@ -9,7 +9,7 @@ const people = [
     date: '10.07.2000',
   },
   {
-    id: 789,
+    id: 2,
     biography: 'some text',
     name: {
       firstName: 'Marina',
@@ -18,7 +18,7 @@ const people = [
     date: '30.12.1980',
   },
   {
-    id: 456,
+    id: 3,
     biography: 'some text',
     name: {
       firstName: 'Oleg',
@@ -27,7 +27,7 @@ const people = [
     date: '13.08.2005',
   },
   {
-    id: 43,
+    id: 7,
     biography: 'some text',
     name: {
       firstName: 'Misha',
@@ -36,7 +36,7 @@ const people = [
     date: '7.11.2003',
   },
   {
-    id: 589,
+    id: 5,
     biography: 'some text',
     name: {
       firstName: 'Alina',
@@ -45,7 +45,7 @@ const people = [
     date: '20.06.2010',
   },
   {
-    id: 346,
+    id: 6,
     biography: 'some text',
     name: {
       firstName: 'Kira',
@@ -54,7 +54,7 @@ const people = [
     date: '21.12.2100',
   },
   {
-    id: 78,
+    id: 8,
     biography: 'some text',
     name: {
       firstName: 'Pasha',

@@ -1,3 +1,5 @@
+/* eslint-disable no-unused-vars */
+/* eslint-disable class-methods-use-this */
 import React from 'react';
 import debounce from 'lodash.debounce';
 import people from '../../utils/people';
@@ -17,8 +19,19 @@ class Table extends React.Component {
         biography: '',
       },
       activeIndex: 0,
+      currentPerson: null,
     };
     this.debonceHandleSearch = debounce(this.handleSearch, 300);
+    this.sortPersons = (a, b) => {
+      if (a.id > b.id) {
+        return 1;
+      }
+      return -1;
+    };
+
+    this.dragOverHandle = (e) => {
+      e.preventDefault();
+    };
   }
   // sorting without sort function
   // function sorting(arr) {
@@ -36,6 +49,26 @@ class Table extends React.Component {
   //   }
   //   return arr;
   // }
+
+  dragStartHandle = (e, pers) => {
+    this.setState({ currentPerson: pers });
+  };
+
+  dragLeaveHandle = (e) => {
+
+  };
+
+  dragEndHandle = (e) => {
+  };
+
+  dragDropHandle = (e, pers) => {
+    const { currentPerson } = this.state;
+    e.preventDefault();
+    this.setState(({ arr }) => ({
+      arr: [...arr.map((item) => (item.id === pers.id ? { ...item, id: currentPerson.id }
+        : item.id === currentPerson.id ? { ...item, id: pers.id } : item))],
+    }));
+  };
 
   handleDelete = (itemId) => {
     const { arr } = this.state;
@@ -141,6 +174,12 @@ class Table extends React.Component {
         increment={this.increment}
         decrement={this.decrement}
         actives={activeIndex}
+        dragStartHandle={this.dragStartHandle}
+        dragLeaveHandle={this.dragLeaveHandle}
+        dragOverHandle={this.dragOverHandle}
+        dragEndHandle={this.dragEndHandle}
+        dragDropHandle={this.dragDropHandle}
+        sortPersons={this.sortPersons}
       />
 
     );

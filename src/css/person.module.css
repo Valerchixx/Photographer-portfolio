@@ -1,3 +1,37 @@
 .active{
     border: 3px solid rgb(0, 162, 255);
 }
+.btnDel{
+    width: 80px;
+    height: 35px;
+    font-family: Arial, Helvetica, sans-serif;
+    margin-top: 10px;
+    border: none;
+    background-color: rgb(227, 49, 49);
+    color: #fff;
+    border-radius: 2px;
+}
+.btnDel:hover{
+    opacity: 0.9;
+}
+.btnTd{
+    border: none;
+    padding: 5px;
+}
+.btnUpdate{
+    width: 80px;
+    height: 35px;
+    font-family: Arial, Helvetica, sans-serif;
+    margin-left: 8px;
+    border: none;
+    background-color: rgb(178, 77, 246);
+    color: #fff;
+    border-radius: 2px;
+
+}
+.btnUpdate:hover{
+    opacity: 0.9;
+}
+.person{
+    cursor: grab;
+}

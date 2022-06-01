@@ -10,7 +10,9 @@ class TableView extends React.PureComponent {
   render() {
     const {
       arr, flag, handleDelete, updateObj, handleGetData, updateArray,
-      updateFlag, changeFlag, sortArray, searching, increment, actives, decrement,
+      updateFlag, changeFlag, sortArray, searching, increment, actives,
+      decrement, dragStartHandle, dragLeaveHandle, dragOverHandle, dragEndHandle,
+      dragDropHandle, sortPersons,
     } = this.props;
     return (
       <div>
@@ -44,23 +46,25 @@ class TableView extends React.PureComponent {
           </thead>
           <tbody>
             {flag && <UserInputs arr={arr} setFlag={updateFlag} setArr={updateArray} />}
-            {arr.map((item, i) => (
-              <tr key={item.id}>
-                <Person
-                  key={item.id}
-                  firstName={item.name.firstName}
-                  lastName={item.name.lastName}
-                  id={item.id}
-                  biography={item.biography}
-                  date={item.date}
-                  active={actives}
-                  index={i}
-                />
-                <td className={styles.btnTd}>
-                  <button type="button" className={styles.btnDel} onClick={() => handleDelete(item.id)}>delte user</button>
-                  <button type="button" className={styles.btnUpdate} onClick={() => updateObj(i)}>update</button>
-                </td>
-              </tr>
+            {arr.sort(sortPersons).map((item, i) => (
+              <Person
+                key={item.id}
+                firstName={item.name.firstName}
+                lastName={item.name.lastName}
+                id={item.id}
+                biography={item.biography}
+                date={item.date}
+                active={actives}
+                index={i}
+                handleDelete={handleDelete}
+                updateObj={updateObj}
+                dragStartHandle={dragStartHandle}
+                dragLeaveHandle={dragLeaveHandle}
+                dragOverHandle={dragOverHandle}
+                dragEndHandle={dragEndHandle}
+                dragDropHandle={dragDropHandle}
+                pers={item}
+              />
             ))}
           </tbody>
         </table>
@@ -82,6 +86,12 @@ TableView.propTypes = {
   increment: PropTypes.func.isRequired,
   decrement: PropTypes.func.isRequired,
   actives: PropTypes.number.isRequired,
+  dragDropHandle: PropTypes.func.isRequired,
+  dragStartHandle: PropTypes.func.isRequired,
+  dragLeaveHandle: PropTypes.func.isRequired,
+  dragOverHandle: PropTypes.func.isRequired,
+  dragEndHandle: PropTypes.func.isRequired,
+  sortPersons: PropTypes.func.isRequired,
 
 };
 export default TableView;
