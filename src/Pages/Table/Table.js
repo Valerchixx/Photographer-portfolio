@@ -1,5 +1,3 @@
-/* eslint-disable no-unused-vars */
-/* eslint-disable class-methods-use-this */
 import React from 'react';
 import debounce from 'lodash.debounce';
 import people from '../../utils/people';
@@ -54,12 +52,12 @@ class Table extends React.Component {
     this.setState({ currentPerson: pers });
   };
 
-  dragLeaveHandle = (e) => {
+  // dragLeaveHandle = (e) => {
 
-  };
+  // };
 
-  dragEndHandle = (e) => {
-  };
+  // dragEndHandle = (e) => {
+  // };
 
   dragDropHandle = (e, pers) => {
     const { currentPerson } = this.state;
