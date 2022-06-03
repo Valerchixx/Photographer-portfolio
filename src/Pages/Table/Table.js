@@ -1,5 +1,6 @@
 import React from 'react';
 import debounce from 'lodash.debounce';
+import validator from '../../utils/validation';
 import people from '../../utils/people';
 import TableView from './TableView';
 import history from '../../utils/history';
@@ -19,6 +20,8 @@ class Table extends React.Component {
       activeIndex: 0,
       currPerson: null,
       flagSorting: true,
+      searchValue: '',
+      flagValide: true,
     };
     this.debonceHandleSearch = debounce(this.handleSearch, 300);
     this.sortPersons = (a, b) => {
@@ -36,6 +39,20 @@ class Table extends React.Component {
     this.dragLeaveHandle = (e) => {
       this.setState({ flagSorting: false });
       e.target.style.background = 'white';
+    };
+
+    this.validateId = (e) => {
+      const { value } = e.target;
+      let id = '';
+      let flag = null;
+      if (validator(value, /^\d+$/)) {
+        id = value;
+        flag = true;
+      } else {
+        id = '';
+        flag = false;
+      }
+      this.setState({ searchValue: id, update: { id }, flagValide: flag });
     };
   }
   // sorting without sort function
@@ -59,15 +76,6 @@ class Table extends React.Component {
     this.setState({ currPerson: pers });
   };
 
-  // dragEndHandle = (e) => {
-  //   const { arr } = this.state;
-  //   const newArr = [...arr];
-  //   newArr.sort((a, b) => ((a.id > b.id) ? 1 : ((b.id < a.id) ? -1 : 0)));
-  //   this.setState({
-  //     arr: newArr,
-  //   });
-  // };
-
   dragDropHandle = (e, pers) => {
     const { currPerson } = this.state;
     e.preventDefault();
@@ -84,6 +92,7 @@ class Table extends React.Component {
     const { arr } = this.state;
     const items = arr.filter((item) => item.id !== itemId);
     this.setState({ arr: items, fullarr: items });
+    console.log('arr', arr);
   };
 
   handleGetData = (e) => {
@@ -170,9 +179,14 @@ class Table extends React.Component {
     this.setState({ flagSorting: true });
   };
 
+  setFlagValide = () => {
+    this.setState({ flagValide: true });
+  };
+
   render() {
     const {
-      flag, arr, activeIndex, fullarr, flagSorting,
+      flag, arr, activeIndex, fullarr, flagSorting, searchValue,
+      flagValide,
     } = this.state;
     return (
       <TableView
@@ -197,6 +211,10 @@ class Table extends React.Component {
         fullArr={fullarr}
         flagSorting={flagSorting}
         setSorting={this.setFlagSorting}
+        searchValue={searchValue}
+        validateId={this.validateId}
+        flagValide={flagValide}
+        setFlagValide={this.setFlagValide}
 
       />
 

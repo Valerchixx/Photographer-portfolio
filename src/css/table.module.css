@@ -45,6 +45,7 @@ th {
     margin-left: 45px;
     width: 120px;
     height: 28px;
+    outline: none;
 }
 
 .wrapper{
@@ -95,4 +96,7 @@ th {
 }
 .arrUp:hover, .arrDown:hover{
     opacity: 1;
+}
+.searchInput.wrong{
+    border: 2px solid red;
 }

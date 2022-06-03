@@ -13,6 +13,7 @@ class TableView extends React.PureComponent {
       updateFlag, changeFlag, sortArray, searching, increment, actives,
       decrement, dragStartHandle, dragLeaveHandle, dragOverHandle,
       dragDropHandle, sortPersons, fullArr, flagSorting, setSorting,
+      searchValue, validateId, flagValide, setFlagValide,
     } = this.props;
     return (
       <div>
@@ -21,10 +22,25 @@ class TableView extends React.PureComponent {
         <div className={styles.wrapper}>
           <div>
             <button type="button" onClick={changeFlag} className={styles.addUser}>AddUser</button>
-            <input type="text" placeholder="enter id" name="id" onChange={(e) => searching(e)} className={styles.searchInput} />
+            <input
+              type="text"
+              placeholder="enter id"
+              name="id"
+              value={searchValue}
+              onChange={(e) => { searching(e); validateId(e); }}
+              onBlur={setFlagValide}
+              className={flagValide ? styles.searchInput : `${styles.searchInput} ${styles.wrong}`}
+            />
           </div>
           <div>
-            <input type="text" placeholder="enter biography" name="biography" onChange={handleGetData} className={styles.updateInput} />
+            <input
+              type="text"
+              placeholder="enter
+             biography"
+              name="biography"
+              onChange={handleGetData}
+              className={styles.updateInput}
+            />
           </div>
           <button type="button" className={styles.btnSort} onClick={() => { sortArray(); setSorting(); }}>Sort</button>
         </div>
@@ -111,6 +127,10 @@ TableView.propTypes = {
   fullArr: PropTypes.array.isRequired,
   flagSorting: PropTypes.bool.isRequired,
   setSorting: PropTypes.func.isRequired,
+  searchValue: PropTypes.string.isRequired,
+  validateId: PropTypes.func.isRequired,
+  flagValide: PropTypes.bool.isRequired,
+  setFlagValide: PropTypes.func.isRequired,
 
 };
 export default TableView;
