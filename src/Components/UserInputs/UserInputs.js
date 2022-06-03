@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import UserInputsView from './UserInputsView';
 
-function UserInputs({ setArr, setFlag }) {
+function UserInputs({ setArr, setFlag, fullArr }) {
   const [elem, setElem] = useState({
     firstName: '',
     lastName: '',
@@ -28,6 +28,7 @@ function UserInputs({ setArr, setFlag }) {
       id: elem.id,
       biography: elem.biography,
       date: elem.date,
+      order: fullArr.length + 1,
     };
     setArr(newObj);
     setFlag();
@@ -46,6 +47,7 @@ function UserInputs({ setArr, setFlag }) {
 UserInputs.propTypes = {
   setArr: PropTypes.func.isRequired,
   setFlag: PropTypes.func.isRequired,
+  fullArr: PropTypes.array.isRequired,
 
 };
 export default UserInputs;

@@ -17,11 +17,12 @@ class Table extends React.Component {
         biography: '',
       },
       activeIndex: 0,
-      currentPerson: null,
+      currPerson: null,
+      flagSorting: true,
     };
     this.debonceHandleSearch = debounce(this.handleSearch, 300);
     this.sortPersons = (a, b) => {
-      if (a.id > b.id) {
+      if (a.order > b.order) {
         return 1;
       }
       return -1;
@@ -29,6 +30,12 @@ class Table extends React.Component {
 
     this.dragOverHandle = (e) => {
       e.preventDefault();
+      e.target.style.background = 'rgb(243, 243, 243)';
+    };
+
+    this.dragLeaveHandle = (e) => {
+      this.setState({ flagSorting: false });
+      e.target.style.background = 'white';
     };
   }
   // sorting without sort function
@@ -49,23 +56,28 @@ class Table extends React.Component {
   // }
 
   dragStartHandle = (e, pers) => {
-    this.setState({ currentPerson: pers });
+    this.setState({ currPerson: pers });
   };
 
-  // dragLeaveHandle = (e) => {
-
-  // };
-
   // dragEndHandle = (e) => {
+  //   const { arr } = this.state;
+  //   const newArr = [...arr];
+  //   newArr.sort((a, b) => ((a.id > b.id) ? 1 : ((b.id < a.id) ? -1 : 0)));
+  //   this.setState({
+  //     arr: newArr,
+  //   });
   // };
 
   dragDropHandle = (e, pers) => {
-    const { currentPerson } = this.state;
+    const { currPerson } = this.state;
     e.preventDefault();
     this.setState(({ arr }) => ({
-      arr: [...arr.map((item) => (item.id === pers.id ? { ...item, id: currentPerson.id }
-        : item.id === currentPerson.id ? { ...item, id: pers.id } : item))],
+      arr: [...arr.map((item) => (item.order === pers.order ? { ...item, order: currPerson.order }
+        : item.order === currPerson.order ? { ...item, order: pers.order }
+          : item))].sort((a, b) => ((a.id > b.id) ? 1 : -1)),
+      flagSorting: false,
     }));
+    e.target.style.background = 'white';
   };
 
   handleDelete = (itemId) => {
@@ -83,7 +95,6 @@ class Table extends React.Component {
       },
 
     }));
-    this.debonceHandleSearch();
   };
 
   handleSearch = () => {
@@ -124,8 +135,8 @@ class Table extends React.Component {
   };
 
   sortArray = () => {
-    const { arr, flagSort } = this.state;
-    const newArr = [...arr];
+    const { fullarr, flagSort } = this.state;
+    const newArr = [...fullarr];
     if (flagSort) {
       newArr.sort((a, b) => ((a.id < b.id) ? 1 : ((b.id < a.id) ? -1 : 0)));
     } else {
@@ -155,8 +166,14 @@ class Table extends React.Component {
     }
   };
 
+  setFlagSorting = () => {
+    this.setState({ flagSorting: true });
+  };
+
   render() {
-    const { flag, arr, activeIndex } = this.state;
+    const {
+      flag, arr, activeIndex, fullarr, flagSorting,
+    } = this.state;
     return (
       <TableView
         arr={arr}
@@ -175,9 +192,12 @@ class Table extends React.Component {
         dragStartHandle={this.dragStartHandle}
         dragLeaveHandle={this.dragLeaveHandle}
         dragOverHandle={this.dragOverHandle}
-        dragEndHandle={this.dragEndHandle}
         dragDropHandle={this.dragDropHandle}
         sortPersons={this.sortPersons}
+        fullArr={fullarr}
+        flagSorting={flagSorting}
+        setSorting={this.setFlagSorting}
+
       />
 
     );

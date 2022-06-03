@@ -34,4 +34,9 @@
 }
 .person{
     cursor: grab;
+    background-color: white;
+}
+.person.drag{
+    background-color: rgb(243, 243, 243);
+
 }
