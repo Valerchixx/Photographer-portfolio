@@ -16,6 +16,7 @@ class Home extends React.Component {
         h: 0,
       },
       time: 0,
+      reviews: [],
 
     };
     this.interv = '';
@@ -28,6 +29,11 @@ class Home extends React.Component {
     this.updateM = timer.m;
     this.updateS = timer.s;
     this.updateMs = timer.ms;
+    this.breakPoints = [
+      { width: 200, itemsToShow: 1 },
+      { width: 800, itemsToShow: 2 },
+      { width: 1200, itemsToShow: 3 },
+    ];
 
     this.run = () => {
       const { time } = this.state;
@@ -52,6 +58,9 @@ class Home extends React.Component {
     this.interv = setInterval(() => {
       this.run();
     }, 100);
+    fetch('https://jsonplaceholder.typicode.com/comments')
+      .then((res) => res.json())
+      .then((json) => this.setState({ reviews: json }));
   }
 
   componentWillUnmount() {
@@ -60,7 +69,7 @@ class Home extends React.Component {
 
   render() {
     const {
-      name, description, timer, status,
+      name, description, timer, status, reviews,
     } = this.state;
     return (
       <HomeView
@@ -75,6 +84,8 @@ class Home extends React.Component {
         status={status}
         stop={this.stop}
         reset={this.reset}
+        reviews={reviews}
+        breakPoints={this.breakPoints}
       />
 
     );

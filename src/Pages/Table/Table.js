@@ -89,10 +89,9 @@ class Table extends React.Component {
   };
 
   handleDelete = (itemId) => {
-    const { arr } = this.state;
-    const items = arr.filter((item) => item.id !== itemId);
+    const { fullarr } = this.state;
+    const items = fullarr.filter((item) => item.id !== itemId);
     this.setState({ arr: items, fullarr: items });
-    console.log('arr', arr);
   };
 
   handleGetData = (e) => {

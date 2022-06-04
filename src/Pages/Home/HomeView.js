@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import Carousel from 'react-elastic-carousel';
 import profile from '../../images/profile.svg';
 import styles from '../../css/home.module.css';
 import Header from '../../Components/Header/Header';
@@ -10,6 +11,7 @@ import Explorations from '../../Components/Explorations/Explorations';
 import Projects from '../../Components/Projects/Projects';
 import Footer from '../../Components/Footer/Footer';
 import Display from '../../Components/Display/Display';
+import Review from '../../Components/Review/Review';
 
 class HomeView extends React.PureComponent {
   render() {
@@ -21,6 +23,8 @@ class HomeView extends React.PureComponent {
       projectsRef,
       featuredRef,
       timer,
+      reviews,
+      breakPoints,
     } = this.props;
     return (
       <div className={styles.wrappers}>
@@ -76,6 +80,18 @@ class HomeView extends React.PureComponent {
             <Projects />
           </div>
         </div>
+        <div className={styles.reviews}>
+          <Title text="Reviews" />
+          <div className={styles.reviewsWrap}>
+            <Carousel breakPoints={breakPoints}>
+              {reviews.slice(0, 9).map((item) => (
+                <div>
+                  <Review email={item.email} body={item.body} />
+                </div>
+              ))}
+            </Carousel>
+          </div>
+        </div>
         <div>
           <div className={styles.container}>
             <Title text="Contact Me" />
@@ -105,5 +121,7 @@ HomeView.propTypes = {
   projectsRef: PropTypes.object.isRequired,
   featuredRef: PropTypes.object.isRequired,
   timer: PropTypes.object.isRequired,
+  reviews: PropTypes.array.isRequired,
+  breakPoints: PropTypes.array.isRequired,
 };
 export default HomeView;
