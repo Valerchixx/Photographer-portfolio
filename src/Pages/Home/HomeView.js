@@ -85,7 +85,7 @@ class HomeView extends React.PureComponent {
           <div className={styles.reviewsWrap}>
             <Carousel breakPoints={breakPoints}>
               {reviews.slice(0, 9).map((item) => (
-                <div>
+                <div key={item.id}>
                   <Review email={item.email} body={item.body} />
                 </div>
               ))}
