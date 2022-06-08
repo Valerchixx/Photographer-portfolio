@@ -4,11 +4,11 @@ import styles from './person.module.css';
 
 function Person({
   firstName, lastName, date, biography, id, active, index, updateObj, handleDelete,
-  pers, dragStartHandle, dragLeaveHandle, dragDropHandle, dragOverHandle,
+  pers, dragStartHandle, dragLeaveHandle, dragDropHandle, dragOverHandle, elemActive,
 }) {
   return (
     <tr
-      className={styles.person}
+      className={elemActive ? styles.grey : styles.white}
       draggable={true}
       onDragStart={(e) => dragStartHandle(e, pers)}
       onDragLeave={(e) => dragLeaveHandle(e)}
@@ -42,6 +42,7 @@ Person.propTypes = {
   dragStartHandle: PropTypes.func.isRequired,
   dragLeaveHandle: PropTypes.func.isRequired,
   dragOverHandle: PropTypes.func.isRequired,
+  elemActive: PropTypes.bool.isRequired,
 
 };
 export default Person;

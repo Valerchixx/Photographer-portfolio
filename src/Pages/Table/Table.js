@@ -1,4 +1,3 @@
-/* eslint-disable max-len */
 import React from 'react';
 import debounce from 'lodash.debounce';
 import people from '../../utils/people';
@@ -22,6 +21,7 @@ class Table extends React.Component {
       flagSorting: true,
       searchValue: '',
       flagValide: true,
+      elemActive: false,
     };
     this.debonceHandleSearch = debounce(this.handleSearch, 300);
     this.sortPersons = (a, b) => {
@@ -33,12 +33,12 @@ class Table extends React.Component {
 
     this.dragOverHandle = (e) => {
       e.preventDefault();
-      e.target.style.background = 'rgb(243, 243, 243)';
+      e.currentTarget.style.background = 'rgb(243, 243, 243)';
     };
 
     this.dragLeaveHandle = (e) => {
       this.setState({ flagSorting: false });
-      e.target.style.background = 'white';
+      e.currentTarget.style.background = 'white';
     };
 
     this.validateId = (e) => {
@@ -72,28 +72,32 @@ class Table extends React.Component {
   //   return arr;
   // }
 
-  dragStartHandle = (e, pers) => {
+  dragStartHandle = (pers) => {
     this.setState({ currPerson: pers });
   };
 
   dragDropHandle = (e, pers) => {
+    const { currPerson } = this.state;
     e.preventDefault();
     this.setState(({ arr }) => ({
-      arr: [...arr.map((item) => this.changeOrder(item, pers))],
+      arr: [...arr.map((item) => (item.order === pers.order ? { ...item, order: currPerson.order }
+        : item.order === currPerson.order ? { ...item, order: pers.order }
+          : item))].sort((a, b) => ((a.id > b.id) ? 1 : -1)),
+      flagSorting: false,
     }));
-    e.target.style.background = 'white';
+    e.currentTarget.style.background = 'white';
   };
 
-  changeOrder = (item, pers) => {
-    const { currPerson } = this.state;
-    if (item.order === pers.order) {
-      return { ...item, order: currPerson.order };
-    } if (item.order === currPerson.order) {
-      return { ...item, order: pers.order };
-    }
+  // changeOrder = (item, pers) => {
+  //   const { currPerson } = this.state;
+  //   if (item.order === pers.order) {
+  //     return { ...item, order: currPerson.order };
+  //   } if (item.order === currPerson.order) {
+  //     return { ...item, order: pers.order };
+  //   }
 
-    return item;
-  };
+  //   return item;
+  // };
 
   handleDelete = (itemId) => {
     const { fullarr } = this.state;
@@ -192,7 +196,7 @@ class Table extends React.Component {
   render() {
     const {
       flag, arr, activeIndex, fullarr, flagSorting, searchValue,
-      flagValide,
+      flagValide, elemActive,
     } = this.state;
     return (
       <TableView
@@ -221,6 +225,7 @@ class Table extends React.Component {
         validateId={this.validateId}
         flagValide={flagValide}
         setFlagValide={this.setFlagValide}
+        elemActive={elemActive}
 
       />
 
