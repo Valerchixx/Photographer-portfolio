@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import arrowUp from '../../images/arrowUp.svg';
 import arrowDown from '../../images/arrowDown.svg';
-import styles from '../../css/table.module.css';
+import styles from './table.module.css';
 import Person from '../../Components/Person/Person';
 import UserInputs from '../../Components/UserInputs/UserInputs';
 

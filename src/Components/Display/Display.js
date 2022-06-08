@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import styles from '../../css/display.module.css';
+import styles from './display.module.css';
 
 function Display(props) {
   const { timer } = props;

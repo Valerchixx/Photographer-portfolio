@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Carousel from 'react-elastic-carousel';
 import profile from '../../images/profile.svg';
-import styles from '../../css/home.module.css';
+import styles from './home.module.css';
 import Header from '../../Components/Header/Header';
 import Button from '../../Components/Button/Button';
 import Featured from '../../Components/Featured/Featured';

@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import envelope from '../../images/envelope.svg';
-import styles from '../../css/button.module.css';
+import styles from './button.module.css';
 
 function Button({ gmail }) {
   return (

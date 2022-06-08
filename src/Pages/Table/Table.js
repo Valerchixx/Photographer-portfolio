@@ -1,6 +1,6 @@
+/* eslint-disable max-len */
 import React from 'react';
 import debounce from 'lodash.debounce';
-import validator from '../../utils/validation';
 import people from '../../utils/people';
 import TableView from './TableView';
 import history from '../../utils/history';
@@ -45,7 +45,7 @@ class Table extends React.Component {
       const { value } = e.target;
       let id = '';
       let flag = null;
-      if (validator(value, /^\d+$/)) {
+      if (Number.isInteger(+value)) {
         id = value;
         flag = true;
       } else {
@@ -77,15 +77,22 @@ class Table extends React.Component {
   };
 
   dragDropHandle = (e, pers) => {
-    const { currPerson } = this.state;
     e.preventDefault();
     this.setState(({ arr }) => ({
-      arr: [...arr.map((item) => (item.order === pers.order ? { ...item, order: currPerson.order }
-        : item.order === currPerson.order ? { ...item, order: pers.order }
-          : item))].sort((a, b) => ((a.id > b.id) ? 1 : -1)),
-      flagSorting: false,
+      arr: [...arr.map((item) => this.changeOrder(item, pers))],
     }));
     e.target.style.background = 'white';
+  };
+
+  changeOrder = (item, pers) => {
+    const { currPerson } = this.state;
+    if (item.order === pers.order) {
+      return { ...item, order: currPerson.order };
+    } if (item.order === currPerson.order) {
+      return { ...item, order: pers.order };
+    }
+
+    return item;
   };
 
   handleDelete = (itemId) => {

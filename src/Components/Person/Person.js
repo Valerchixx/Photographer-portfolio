@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import styles from '../../css/person.module.css';
+import styles from './person.module.css';
 
 function Person({
   firstName, lastName, date, biography, id, active, index, updateObj, handleDelete,

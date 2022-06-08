@@ -2,7 +2,7 @@ import React from 'react';
 import item1 from '../../images/project1.jpg';
 import item2 from '../../images/project2.jpg';
 import item3 from '../../images/project3.jpg';
-import styles from '../../css/projects.module.css';
+import styles from './projects.module.css';
 
 function Projects() {
   return (

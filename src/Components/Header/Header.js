@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import styles from '../../css/header.module.css';
+import styles from './header.module.css';
 import logo from '../../images/logo.svg';
 
 function Header({ goToFeatured, goToFooter, goToProjects }) {

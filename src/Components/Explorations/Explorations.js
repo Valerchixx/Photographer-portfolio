@@ -1,5 +1,5 @@
 import React from 'react';
-import styles from '../../css/explorations.module.css';
+import styles from './explorations.module.css';
 import item1 from '../../images/gallery1.jpg';
 import item2 from '../../images/gallery2.jpg';
 import item3 from '../../images/gallery3.jpg';

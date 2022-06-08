@@ -10,7 +10,6 @@ function UserInputs({ setArr, setFlag, fullArr }) {
     biography: '',
     date: '',
   });
-  const placeholders = ['firstName', 'lastName', 'id', 'biography', 'date'];
 
   const handleData = (evt) => {
     const { value } = evt.target;
@@ -36,7 +35,7 @@ function UserInputs({ setArr, setFlag, fullArr }) {
 
   return (
     <UserInputsView
-      placeholders={placeholders}
+      placeholders={Object.keys(elem)}
       handleAddUsers={handleAddUsers}
       handleData={handleData}
     />
