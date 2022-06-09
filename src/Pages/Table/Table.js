@@ -77,27 +77,25 @@ class Table extends React.Component {
   };
 
   dragDropHandle = (e, pers) => {
-    const { currPerson } = this.state;
     e.preventDefault();
     this.setState(({ arr }) => ({
-      arr: [...arr.map((item) => (item.order === pers.order ? { ...item, order: currPerson.order }
-        : item.order === currPerson.order ? { ...item, order: pers.order }
-          : item))].sort((a, b) => ((a.id > b.id) ? 1 : -1)),
+      arr: [...arr.map((item) => this.changeOrder(item, pers))]
+        .sort((a, b) => ((a.id > b.id) ? 1 : -1)),
       flagSorting: false,
     }));
     e.currentTarget.style.background = 'white';
   };
 
-  // changeOrder = (item, pers) => {
-  //   const { currPerson } = this.state;
-  //   if (item.order === pers.order) {
-  //     return { ...item, order: currPerson.order };
-  //   } if (item.order === currPerson.order) {
-  //     return { ...item, order: pers.order };
-  //   }
+  changeOrder = (item, pers) => {
+    const { currPerson } = this.state;
+    if (item.order === pers.order) {
+      return { ...item, order: currPerson.order };
+    } if (item.order === currPerson.order) {
+      return { ...item, order: pers.order };
+    }
 
-  //   return item;
-  // };
+    return item;
+  };
 
   handleDelete = (itemId) => {
     const { fullarr } = this.state;
