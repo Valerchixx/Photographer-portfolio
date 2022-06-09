@@ -1,4 +1,3 @@
-/* eslint-disable class-methods-use-this */
 import React from 'react';
 import debounce from 'lodash.debounce';
 import people from '../../utils/people';
