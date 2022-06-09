@@ -1,7 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import arrowUp from '../../images/arrowUp.svg';
-import arrowDown from '../../images/arrowDown.svg';
 import styles from './table.module.css';
 import Person from '../../Components/Person/Person';
 import UserInputs from '../../Components/UserInputs/UserInputs';
@@ -10,10 +8,10 @@ class TableView extends React.PureComponent {
   render() {
     const {
       arr, flag, handleDelete, updateObj, handleGetData, updateArray,
-      updateFlag, changeFlag, sortArray, searching, increment, actives,
-      decrement, dragStartHandle, dragLeaveHandle, dragOverHandle,
-      dragDropHandle, sortPersons, fullArr, flagSorting, setSorting,
-      searchValue, validateId, flagValide, setFlagValide, elemActive,
+      updateFlag, changeFlag, sortArray, searching, actives,
+      dragStartHandle, dragLeaveHandle, dragOverHandle,
+      dragDropHandle, fullArr, flagSorting, setSorting,
+      searchValue, validateId, flagValide, setFlagValide,
     } = this.props;
     return (
       <div>
@@ -43,11 +41,6 @@ class TableView extends React.PureComponent {
             />
           </div>
           <button type="button" className={styles.btnSort} onClick={() => { sortArray(); setSorting(); }}>Sort</button>
-        </div>
-        <div className={styles.arrows}>
-          <button onClick={increment} className={styles.arrowUp} type="button"><img className={styles.arrUp} src={arrowUp} alt="" /></button>
-          <button onClick={decrement} className={styles.arrowDown} type="button"><img src={arrowDown} className={styles.arrDown} alt="" /></button>
-
         </div>
         <table className={styles.table}>
           <thead>
@@ -79,9 +72,8 @@ class TableView extends React.PureComponent {
                 dragOverHandle={dragOverHandle}
                 dragDropHandle={dragDropHandle}
                 pers={item}
-                elemActive={elemActive}
               />
-            )) : arr.sort(sortPersons).map((item, i) => (
+            )) : arr.sort((a, b) => (a.order > b.order ? 1 : -1)).map((item, i) => (
               <Person
                 key={item.id}
                 firstName={item.name.firstName}
@@ -98,7 +90,6 @@ class TableView extends React.PureComponent {
                 dragOverHandle={dragOverHandle}
                 dragDropHandle={dragDropHandle}
                 pers={item}
-                elemActive={elemActive}
               />
             )) }
           </tbody>
@@ -118,14 +109,11 @@ TableView.propTypes = {
   changeFlag: PropTypes.func.isRequired,
   sortArray: PropTypes.func.isRequired,
   searching: PropTypes.func.isRequired,
-  increment: PropTypes.func.isRequired,
-  decrement: PropTypes.func.isRequired,
   actives: PropTypes.number.isRequired,
   dragDropHandle: PropTypes.func.isRequired,
   dragStartHandle: PropTypes.func.isRequired,
   dragLeaveHandle: PropTypes.func.isRequired,
   dragOverHandle: PropTypes.func.isRequired,
-  sortPersons: PropTypes.func.isRequired,
   fullArr: PropTypes.array.isRequired,
   flagSorting: PropTypes.bool.isRequired,
   setSorting: PropTypes.func.isRequired,
@@ -133,7 +121,6 @@ TableView.propTypes = {
   validateId: PropTypes.func.isRequired,
   flagValide: PropTypes.bool.isRequired,
   setFlagValide: PropTypes.func.isRequired,
-  elemActive: PropTypes.bool.isRequired,
 
 };
 export default TableView;

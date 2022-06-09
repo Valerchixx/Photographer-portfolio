@@ -34,16 +34,9 @@
 }
 .person{
     cursor: grab;
-    background-color: black;
+    background-color: white;
 }
 .person.drag{
     background-color: rgb(243, 243, 243);
 
-}
-
-.grey{
-    background-color: rgb(243, 243, 243);
-}
-.white{
-    background-color: #fff;
 }

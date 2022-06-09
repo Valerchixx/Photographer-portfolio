@@ -1,3 +1,4 @@
+/* eslint-disable class-methods-use-this */
 import React from 'react';
 import debounce from 'lodash.debounce';
 import people from '../../utils/people';
@@ -21,39 +22,8 @@ class Table extends React.Component {
       flagSorting: true,
       searchValue: '',
       flagValide: true,
-      elemActive: false,
     };
     this.debonceHandleSearch = debounce(this.handleSearch, 300);
-    this.sortPersons = (a, b) => {
-      if (a.order > b.order) {
-        return 1;
-      }
-      return -1;
-    };
-
-    this.dragOverHandle = (e) => {
-      e.preventDefault();
-      e.currentTarget.style.background = 'rgb(243, 243, 243)';
-    };
-
-    this.dragLeaveHandle = (e) => {
-      this.setState({ flagSorting: false });
-      e.currentTarget.style.background = 'white';
-    };
-
-    this.validateId = (e) => {
-      const { value } = e.target;
-      let id = '';
-      let flag = null;
-      if (Number.isInteger(+value)) {
-        id = value;
-        flag = true;
-      } else {
-        id = '';
-        flag = false;
-      }
-      this.setState({ searchValue: id, update: { id }, flagValide: flag });
-    };
   }
   // sorting without sort function
   // function sorting(arr) {
@@ -72,7 +42,17 @@ class Table extends React.Component {
   //   return arr;
   // }
 
-  dragStartHandle = (pers) => {
+  componentDidMount() {
+    document.addEventListener('keydown', (e) => {
+      if (e.keyCode === 38) {
+        this.increment();
+      } else if (e.keyCode === 40) {
+        this.decrement();
+      }
+    });
+  }
+
+  dragStartHandle = (e, pers) => {
     this.setState({ currPerson: pers });
   };
 
@@ -83,7 +63,31 @@ class Table extends React.Component {
         .sort((a, b) => ((a.id > b.id) ? 1 : -1)),
       flagSorting: false,
     }));
-    e.currentTarget.style.background = 'white';
+    e.target.style.background = 'white';
+  };
+
+  dragLeaveHandle = (e) => {
+    this.setState({ flagSorting: false });
+    e.target.style.background = 'white';
+  };
+
+  dragOverHandle = (e) => {
+    e.preventDefault();
+    e.target.style.background = 'rgb(243, 243, 243)';
+  };
+
+  validateId = (e) => {
+    const { value } = e.target;
+    let id = '';
+    let flag = null;
+    if (Number.isInteger(+value)) {
+      id = value;
+      flag = true;
+    } else {
+      id = '';
+      flag = false;
+    }
+    this.setState({ searchValue: id, update: { id }, flagValide: flag });
   };
 
   changeOrder = (item, pers) => {
@@ -167,20 +171,16 @@ class Table extends React.Component {
 
   increment = () => {
     const { activeIndex } = this.state;
-    if (activeIndex > 0) {
-      this.setState(() => ({
-        activeIndex: activeIndex - 1,
-      }));
-    }
+    this.setState(() => ({
+      activeIndex: activeIndex > 0 ? activeIndex - 1 : activeIndex,
+    }));
   };
 
   decrement = () => {
     const { activeIndex, arr } = this.state;
-    if (activeIndex < arr.length - 1) {
-      this.setState((prevState) => ({
-        activeIndex: prevState.activeIndex + 1,
-      }));
-    }
+    this.setState((prevState) => ({
+      activeIndex: activeIndex < arr.length - 1 ? prevState.activeIndex + 1 : activeIndex,
+    }));
   };
 
   setFlagSorting = () => {
@@ -194,7 +194,7 @@ class Table extends React.Component {
   render() {
     const {
       flag, arr, activeIndex, fullarr, flagSorting, searchValue,
-      flagValide, elemActive,
+      flagValide,
     } = this.state;
     return (
       <TableView
@@ -215,7 +215,6 @@ class Table extends React.Component {
         dragLeaveHandle={this.dragLeaveHandle}
         dragOverHandle={this.dragOverHandle}
         dragDropHandle={this.dragDropHandle}
-        sortPersons={this.sortPersons}
         fullArr={fullarr}
         flagSorting={flagSorting}
         setSorting={this.setFlagSorting}
@@ -223,7 +222,6 @@ class Table extends React.Component {
         validateId={this.validateId}
         flagValide={flagValide}
         setFlagValide={this.setFlagValide}
-        elemActive={elemActive}
 
       />
 
