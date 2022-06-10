@@ -36,7 +36,7 @@
     cursor: grab;
     background-color: white;
 }
-.person.drag{
+.person.select{
     background-color: rgb(243, 243, 243);
 
 }

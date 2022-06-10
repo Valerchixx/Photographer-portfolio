@@ -13,7 +13,7 @@ class Table extends React.Component {
       arr: people,
       fullarr: people,
       update: {
-        id: 0,
+        id: '',
         biography: '',
       },
       activeIndex: 0,
@@ -21,6 +21,7 @@ class Table extends React.Component {
       flagSorting: true,
       searchValue: '',
       flagValide: true,
+      activeElem: -1,
     };
     this.debonceHandleSearch = debounce(this.handleSearch, 300);
   }
@@ -61,18 +62,17 @@ class Table extends React.Component {
       arr: [...arr.map((item) => this.changeOrder(item, pers))]
         .sort((a, b) => ((a.id > b.id) ? 1 : -1)),
       flagSorting: false,
+      activeElem: -1,
     }));
-    e.target.style.background = 'white';
   };
 
-  dragLeaveHandle = (e) => {
+  dragLeaveHandle = () => {
     this.setState({ flagSorting: false });
-    e.target.style.background = 'white';
   };
 
-  dragOverHandle = (e) => {
+  dragOverHandle = (e, i) => {
     e.preventDefault();
-    e.target.style.background = 'rgb(243, 243, 243)';
+    this.setState({ activeElem: i });
   };
 
   validateId = (e) => {
@@ -193,7 +193,7 @@ class Table extends React.Component {
   render() {
     const {
       flag, arr, activeIndex, fullarr, flagSorting, searchValue,
-      flagValide,
+      flagValide, activeElem,
     } = this.state;
     return (
       <TableView
@@ -221,6 +221,7 @@ class Table extends React.Component {
         validateId={this.validateId}
         flagValide={flagValide}
         setFlagValide={this.setFlagValide}
+        activeElem={activeElem}
 
       />
 

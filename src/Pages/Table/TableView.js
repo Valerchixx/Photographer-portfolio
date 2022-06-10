@@ -11,7 +11,7 @@ class TableView extends React.PureComponent {
       updateFlag, changeFlag, sortArray, searching, actives,
       dragStartHandle, dragLeaveHandle, dragOverHandle,
       dragDropHandle, fullArr, flagSorting, setSorting,
-      searchValue, validateId, flagValide, setFlagValide,
+      searchValue, validateId, flagValide, setFlagValide, activeElem,
     } = this.props;
     return (
       <div>
@@ -72,6 +72,7 @@ class TableView extends React.PureComponent {
                 dragOverHandle={dragOverHandle}
                 dragDropHandle={dragDropHandle}
                 pers={item}
+                activeElem={activeElem}
               />
             )) : arr.sort((a, b) => (a.order > b.order ? 1 : -1)).map((item, i) => (
               <Person
@@ -90,6 +91,7 @@ class TableView extends React.PureComponent {
                 dragOverHandle={dragOverHandle}
                 dragDropHandle={dragDropHandle}
                 pers={item}
+                activeElem={activeElem}
               />
             )) }
           </tbody>
@@ -120,6 +122,7 @@ TableView.propTypes = {
   searchValue: PropTypes.string.isRequired,
   validateId: PropTypes.func.isRequired,
   flagValide: PropTypes.bool.isRequired,
+  activeElem: PropTypes.number.isRequired,
   setFlagValide: PropTypes.func.isRequired,
 
 };

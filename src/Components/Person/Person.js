@@ -5,14 +5,15 @@ import styles from './person.module.css';
 function Person({
   firstName, lastName, date, biography, id, active, index, updateObj, handleDelete,
   pers, dragStartHandle, dragLeaveHandle, dragDropHandle, dragOverHandle,
+  activeElem,
 }) {
   return (
     <tr
-      className={styles.person}
+      className={index === activeElem ? `${styles.person} ${styles.select}` : styles.person}
       draggable={true}
       onDragStart={(e) => dragStartHandle(e, pers)}
       onDragLeave={(e) => dragLeaveHandle(e)}
-      onDragOver={(e) => dragOverHandle(e)}
+      onDragOver={(e) => dragOverHandle(e, index)}
       onDrop={(e) => dragDropHandle(e, pers)}
     >
       <td className={index === active ? styles.active : styles.td}>{firstName}</td>
@@ -42,6 +43,7 @@ Person.propTypes = {
   dragStartHandle: PropTypes.func.isRequired,
   dragLeaveHandle: PropTypes.func.isRequired,
   dragOverHandle: PropTypes.func.isRequired,
+  activeElem: PropTypes.number.isRequired,
 
 };
 export default Person;
