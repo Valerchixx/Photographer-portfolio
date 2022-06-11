@@ -9,9 +9,9 @@
     justify-content: space-around;
     padding: 15px 30px;
 }
-.btn img {
+.btn img{
     margin-right: 10px;
 }
-.btn:hover {
+.btn:hover{
     opacity: 0.8;
 }

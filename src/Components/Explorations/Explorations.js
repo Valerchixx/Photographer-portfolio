@@ -1,4 +1,3 @@
-/* eslint-disable no-console */
 import React from 'react';
 import styles from './explorations.module.css';
 import item1 from '../../images/gallery1.jpg';
