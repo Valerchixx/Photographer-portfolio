@@ -158,9 +158,9 @@ class Table extends React.Component {
     const { fullarr, flagSort } = this.state;
     const newArr = [...fullarr];
     if (flagSort) {
-      newArr.sort((a, b) => ((a.id < b.id) ? 1 : ((b.id < a.id) ? -1 : 0)));
+      newArr.sort((a, b) => ((a.id < b.id) ? 1 : -1));
     } else {
-      newArr.sort((a, b) => ((a.id > b.id) ? 1 : ((b.id > a.id) ? -1 : 0)));
+      newArr.sort((a, b) => ((a.id > b.id) ? 1 : -1));
     }
     this.setState((prevState) => ({
       arr: newArr,

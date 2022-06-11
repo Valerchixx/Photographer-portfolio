@@ -11,9 +11,9 @@ function Header({ goToFeatured, goToFooter, goToProjects }) {
           <img src={logo} alt="logo" />
         </div>
         <div className={styles.navWrap}>
-          <a className={styles.linkHeader} onClick={goToFeatured} href="#">Featured</a>
-          <a className={styles.linkHeader} onClick={goToProjects} href="#">Work</a>
-          <a className={styles.linkHeader} onClick={goToFooter} href="#">Contact</a>
+          <a className={styles.linkHeader} onClick={goToFeatured} href="#featured">Featured</a>
+          <a className={styles.linkHeader} onClick={goToProjects} href="#work">Work</a>
+          <a className={styles.linkHeader} onClick={goToFooter} href="#contact">Contact</a>
           <a className={styles.linkHeader} href="/table">Table</a>
         </div>
       </div>

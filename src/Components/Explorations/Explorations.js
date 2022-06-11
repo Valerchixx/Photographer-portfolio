@@ -11,7 +11,16 @@ function Explorations() {
   return (
     <div className={styles.explorationsWrap}>
       <div className={styles.explorationsCol1}>
-        <div><img onLoad={() => console.log('img is load succesfully')} onError={() => console.log('error happened')} className={styles.item} src={item1} alt="item img" /></div>
+        <div>
+          <img
+            onLoad={() => console.log('img is load succesfully')}
+            onError={() => console.log('error happened')}
+            className={styles.item}
+            src={item1}
+            alt="item img"
+          />
+
+        </div>
         <div><img className={styles.item} src={item2} alt="item img" /></div>
         <div><img className={styles.item} src={item3} alt="item img" /></div>
       </div>

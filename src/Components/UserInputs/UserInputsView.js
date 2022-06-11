@@ -7,11 +7,20 @@ function UserInputsView({ placeholders, handleData, handleAddUsers }) {
     <tr>
       {placeholders.map((item) => (
         <td key={item.id}>
-          <input key={item.id} type="text" onChange={handleData} className={styles.input} name={item} placeholder={item} />
+          <input
+            key={item.id}
+            type="text"
+            onChange={handleData}
+            className={styles.input}
+            name={item}
+            placeholder={item}
+          />
 
         </td>
       ))}
-      <td className={styles.btnTd}><button type="button" onClick={handleAddUsers} className={styles.btn}>add</button></td>
+      <td className={styles.btnTd}>
+        <button type="button" onClick={handleAddUsers} className={styles.btn}>add</button>
+      </td>
     </tr>
   );
 }

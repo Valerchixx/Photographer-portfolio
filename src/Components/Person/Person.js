@@ -10,7 +10,7 @@ function Person({
   return (
     <tr
       className={index === activeElem ? `${styles.person} ${styles.select}` : styles.person}
-      draggable={true}
+      draggable
       onDragStart={(e) => dragStartHandle(e, pers)}
       onDragLeave={(e) => dragLeaveHandle(e)}
       onDragOver={(e) => dragOverHandle(e, index)}
