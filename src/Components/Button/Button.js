@@ -4,7 +4,6 @@ import envelope from '../../images/envelope.svg';
 import styles from './button.module.css';
 
 function Button({ gmail }) {
-
   return (
     <button className={styles.btn} type="button">
       <img src={envelope} alt="" />

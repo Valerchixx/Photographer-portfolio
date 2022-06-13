@@ -1,5 +1,7 @@
+/* eslint-disable react/prop-types */
 import React from 'react';
 import debounce from 'lodash.debounce';
+import withRouter from '../../utils/withRouter';
 import people from '../../utils/people';
 import TableView from './TableView';
 import history from '../../utils/history';
@@ -13,7 +15,7 @@ class Table extends React.Component {
       arr: people,
       fullarr: people,
       update: {
-        id: '',
+        id: 9,
         biography: '',
       },
       activeIndex: 0,
@@ -49,6 +51,9 @@ class Table extends React.Component {
       } else if (e.keyCode === 40) {
         this.decrement();
       }
+
+      const { params } = this.props;
+      this.setState({ update: { id: params.id } });
     });
   }
 
@@ -119,7 +124,7 @@ class Table extends React.Component {
 
   handleSearch = () => {
     const { fullarr, update } = this.state;
-    const url = `/table?id=${update.id}`;
+    const url = `/table/${update.id}`;
     const searchElem = fullarr.filter((item) => String(item.id).includes(update.id));
     this.setState({ arr: searchElem });
     history.push(url);
@@ -195,6 +200,8 @@ class Table extends React.Component {
       flag, arr, activeIndex, fullarr, flagSorting, searchValue,
       flagValide, activeElem,
     } = this.state;
+    const { params } = this.props;
+    console.log(params);
     return (
       <TableView
         arr={arr}
@@ -229,4 +236,4 @@ class Table extends React.Component {
   }
 }
 
-export default Table;
+export default withRouter(Table);

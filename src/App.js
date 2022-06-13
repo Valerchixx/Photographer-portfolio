@@ -14,7 +14,7 @@ function App() {
       <Router>
         <Routes>
           <Route path="/web-react" element={<Home />} />
-          <Route path="/table" element={<Table />} />
+          <Route path="/table(/:type)" element={<Table />} />
         </Routes>
       </Router>
     </div>
