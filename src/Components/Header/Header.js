@@ -14,7 +14,7 @@ function Header({ goToFeatured, goToFooter, goToProjects }) {
           <a className={styles.linkHeader} onClick={goToFeatured} href="#featured">Featured</a>
           <a className={styles.linkHeader} onClick={goToProjects} href="#work">Work</a>
           <a className={styles.linkHeader} onClick={goToFooter} href="#contact">Contact</a>
-          <a className={styles.linkHeader} href="/table/''">Table</a>
+          <a className={styles.linkHeader} href="/table/">Table</a>
         </div>
       </div>
     </div>

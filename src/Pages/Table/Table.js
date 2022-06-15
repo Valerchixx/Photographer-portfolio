@@ -56,7 +56,7 @@ class Table extends React.Component {
     });
     if (Number(params.id)) {
       const searchElem = fullarr.filter((item) => String(item.id).includes(Number(params.id)));
-      this.setState({ arr: searchElem });
+      this.setState({ arr: searchElem, searchValue: params.id });
     }
   }
 
