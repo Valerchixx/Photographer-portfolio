@@ -1,5 +1,5 @@
-/* eslint-disable react/prop-types */
 import React from 'react';
+import PropTypes from 'prop-types';
 import debounce from 'lodash.debounce';
 import withRouter from '../../utils/withRouter';
 import people from '../../utils/people';
@@ -15,7 +15,7 @@ class Table extends React.Component {
       arr: people,
       fullarr: people,
       update: {
-        id: 9,
+        id: 0,
         biography: '',
       },
       activeIndex: 0,
@@ -45,16 +45,19 @@ class Table extends React.Component {
   // }
 
   componentDidMount() {
+    const { fullarr } = this.state;
+    const { params } = this.props;
     document.addEventListener('keydown', (e) => {
       if (e.keyCode === 38) {
         this.increment();
       } else if (e.keyCode === 40) {
         this.decrement();
       }
-
-      const { params } = this.props;
-      this.setState({ update: { id: params.id } });
     });
+    if (Number(params.id)) {
+      const searchElem = fullarr.filter((item) => String(item.id).includes(Number(params.id)));
+      this.setState({ arr: searchElem });
+    }
   }
 
   dragStartHandle = (e, pers) => {
@@ -200,8 +203,6 @@ class Table extends React.Component {
       flag, arr, activeIndex, fullarr, flagSorting, searchValue,
       flagValide, activeElem,
     } = this.state;
-    const { params } = this.props;
-    console.log(params);
     return (
       <TableView
         arr={arr}
@@ -235,5 +236,9 @@ class Table extends React.Component {
     );
   }
 }
+
+Table.propTypes = {
+  params: PropTypes.object.isRequired,
+};
 
 export default withRouter(Table);
