@@ -27,8 +27,7 @@
     "predeploy": "npm run build",
     "deploy": "gh-pages -d build",
     "lint": "eslint . --max-warnings=0",
-    "prepare": "husky install",
-    "lint:fix": "eslint --fix --ext .js,.jsx ."
+    "prepare": "husky install"
   },
   "eslintConfig": {
     "extends": [
@@ -46,7 +45,6 @@
       "@babel/plugin-proposal-class-properties"
     ]
   },
-
   "browserslist": {
     "production": [
       ">0.2%",
@@ -74,6 +72,7 @@
     "eslint-plugin-react": "^7.30.0",
     "eslint-plugin-react-hooks": "^4.5.0",
     "gh-pages": "^3.2.3",
+    "husky": "^8.0.1",
     "lint-staged": "^13.0.1",
     "webpack": "^5.73.0"
   }
