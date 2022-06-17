@@ -8,7 +8,7 @@ import {
 import Home from './Pages/Home/Home';
 import Table from './Pages/Table/Table';
 
-function App() {
+const App = () => {
   return (
     <div className="App">
       <Router>
@@ -20,6 +20,6 @@ function App() {
       </Router>
     </div>
   );
-}
+};
 
 export default App;
