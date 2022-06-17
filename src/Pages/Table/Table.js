@@ -1,5 +1,5 @@
 import React from 'react';
-import PropTypes from 'prop-types';
+import PropTypes, { number } from 'prop-types';
 import debounce from 'lodash.debounce';
 import withRouter from '../../utils/withRouter';
 import people from '../../utils/people';
@@ -238,7 +238,7 @@ class Table extends React.Component {
 }
 
 Table.propTypes = {
-  params: PropTypes.object.isRequired,
+  params: PropTypes.shape({ id: number }).isRequired,
 };
 
 export default withRouter(Table);

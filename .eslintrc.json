@@ -26,6 +26,12 @@
         "jsx-a11y/label-has-for": 0,
         "class-methods-use-this": 0,
         "jsx-a11y/no-autofocus": 0,
-        "react/forbid-prop-types": "off"
+        "react/function-component-definition": [
+            2,
+            {
+              "namedComponents": "arrow-function",
+              "unnamedComponents": "arrow-function"
+            }
+          ]
     }
 }

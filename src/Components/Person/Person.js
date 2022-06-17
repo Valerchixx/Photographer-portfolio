@@ -1,12 +1,12 @@
 import React from 'react';
-import PropTypes from 'prop-types';
+import PropTypes, { number, string } from 'prop-types';
 import styles from './person.module.css';
 
-function Person({
+const Person = ({
   firstName, lastName, date, biography, id, active, index, updateObj, handleDelete,
   pers, dragStartHandle, dragLeaveHandle, dragDropHandle, dragOverHandle,
   activeElem,
-}) {
+}) => {
   return (
     <tr
       className={index === activeElem ? `${styles.person} ${styles.select}` : styles.person}
@@ -27,7 +27,7 @@ function Person({
       </td>
     </tr>
   );
-}
+};
 Person.propTypes = {
   lastName: PropTypes.string.isRequired,
   firstName: PropTypes.string.isRequired,
@@ -38,7 +38,13 @@ Person.propTypes = {
   index: PropTypes.number.isRequired,
   handleDelete: PropTypes.func.isRequired,
   updateObj: PropTypes.func.isRequired,
-  pers: PropTypes.object.isRequired,
+  pers: PropTypes.shape({
+    biography: string,
+    date: string,
+    id: number,
+    name: PropTypes.shape({ firstName: string, lastName: string }),
+    order: number
+  }).isRequired,
   dragDropHandle: PropTypes.func.isRequired,
   dragStartHandle: PropTypes.func.isRequired,
   dragLeaveHandle: PropTypes.func.isRequired,

@@ -4,7 +4,7 @@ import item2 from '../../images/project2.jpg';
 import item3 from '../../images/project3.jpg';
 import styles from './projects.module.css';
 
-function Projects() {
+const Projects = () => {
   return (
     <div className={styles.projectsWrap}>
       <div><img className={styles.item} src={item1} alt="projectItem img" /></div>
@@ -12,5 +12,5 @@ function Projects() {
       <div><img className={styles.item} src={item3} alt="rojectItem img" /></div>
     </div>
   );
-}
+};
 export default Projects;

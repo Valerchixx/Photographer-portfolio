@@ -1,9 +1,8 @@
-/* eslint-disable react/forbid-prop-types */
 import React, { useState } from 'react';
-import PropTypes from 'prop-types';
+import PropTypes, { number, string } from 'prop-types';
 import UserInputsView from './UserInputsView';
 
-function UserInputs({ setArr, setFlag, fullArr }) {
+const UserInputs = ({ setArr, setFlag, fullArr }) => {
   const [elem, setElem] = useState({
     firstName: '',
     lastName: '',
@@ -42,12 +41,18 @@ function UserInputs({ setArr, setFlag, fullArr }) {
     />
 
   );
-}
+};
 
 UserInputs.propTypes = {
   setArr: PropTypes.func.isRequired,
   setFlag: PropTypes.func.isRequired,
-  fullArr: PropTypes.array.isRequired,
+  fullArr: PropTypes.arrayOf(PropTypes.shape({
+    biography: string,
+    date: string,
+    id: number,
+    name: PropTypes.shape({ firstName: string, lastName: string }),
+    order: number
+  })).isRequired,
 
 };
 export default UserInputs;

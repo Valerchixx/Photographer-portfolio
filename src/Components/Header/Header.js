@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import styles from './header.module.css';
 import logo from '../../images/logo.svg';
 
-function Header({ goToFeatured, goToFooter, goToProjects }) {
+const Header = ({ goToFeatured, goToFooter, goToProjects }) => {
   return (
     <div>
       <div className={styles.headerWrapper}>
@@ -19,7 +19,7 @@ function Header({ goToFeatured, goToFooter, goToProjects }) {
       </div>
     </div>
   );
-}
+};
 
 Header.propTypes = {
   goToFeatured: PropTypes.func.isRequired,

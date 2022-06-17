@@ -1,5 +1,5 @@
 import React from 'react';
-import PropTypes from 'prop-types';
+import PropTypes, { number, string } from 'prop-types';
 import styles from './table.module.css';
 import Person from '../../Components/Person/Person';
 import UserInputs from '../../Components/UserInputs/UserInputs';
@@ -101,7 +101,13 @@ class TableView extends React.PureComponent {
   }
 }
 TableView.propTypes = {
-  arr: PropTypes.array.isRequired,
+  arr: PropTypes.arrayOf(PropTypes.shape({
+    biography: string,
+    date: string,
+    id: number,
+    name: PropTypes.shape({ firstName: string, lastName: string }),
+    order: number
+  })).isRequired,
   flag: PropTypes.bool.isRequired,
   updateArray: PropTypes.func.isRequired,
   handleDelete: PropTypes.func.isRequired,
@@ -116,7 +122,13 @@ TableView.propTypes = {
   dragStartHandle: PropTypes.func.isRequired,
   dragLeaveHandle: PropTypes.func.isRequired,
   dragOverHandle: PropTypes.func.isRequired,
-  fullArr: PropTypes.array.isRequired,
+  fullArr: PropTypes.arrayOf(PropTypes.shape({
+    biography: string,
+    date: string,
+    id: number,
+    name: PropTypes.shape({ firstName: string, lastName: string }),
+    order: number
+  })).isRequired,
   flagSorting: PropTypes.bool.isRequired,
   setSorting: PropTypes.func.isRequired,
   searchValue: PropTypes.string.isRequired,

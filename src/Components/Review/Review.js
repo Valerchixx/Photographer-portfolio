@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styles from './review.module.css';
 
-function Review({ email, body }) {
+const Review = ({ email, body }) => {
   return (
     <div className={styles.review}>
       <div className={styles.title}>
@@ -13,7 +13,7 @@ function Review({ email, body }) {
       </div>
     </div>
   );
-}
+};
 
 Review.propTypes = {
   email: PropTypes.string.isRequired,

@@ -1,6 +1,5 @@
-/* eslint-disable react/forbid-prop-types */
 import React from 'react';
-import PropTypes from 'prop-types';
+import PropTypes, { number, string } from 'prop-types';
 import Carousel from 'react-elastic-carousel';
 import profile from '../../images/profile.svg';
 import styles from './home.module.css';
@@ -118,11 +117,19 @@ HomeView.propTypes = {
   name: PropTypes.string.isRequired,
   description: PropTypes.string.isRequired,
   goToSection: PropTypes.func.isRequired,
-  footerRef: PropTypes.object.isRequired,
-  projectsRef: PropTypes.object.isRequired,
-  featuredRef: PropTypes.object.isRequired,
-  timer: PropTypes.object.isRequired,
-  reviews: PropTypes.array.isRequired,
-  breakPoints: PropTypes.array.isRequired,
+  footerRef: PropTypes.shape({}).isRequired,
+  projectsRef: PropTypes.shape({}).isRequired,
+  featuredRef: PropTypes.shape({}).isRequired,
+  timer: PropTypes.shape({
+    ms: number, s: number, m: number, h: number
+  }).isRequired,
+  reviews: PropTypes.arrayOf(PropTypes.shape({
+    bosy: string,
+    email: string,
+    id: number,
+    nam: string,
+    postId: number
+  })).isRequired,
+  breakPoints: PropTypes.arrayOf(PropTypes.shape({ width: number, itemsToShow: number })).isRequired,
 };
 export default HomeView;

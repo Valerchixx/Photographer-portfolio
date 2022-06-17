@@ -7,7 +7,7 @@ import item4 from '../../images/gallery4.jpg';
 import item5 from '../../images/gallery5.jpg';
 import item6 from '../../images/gallery6.jpg';
 
-function Explorations() {
+const Explorations = () => {
   return (
     <div className={styles.explorationsWrap}>
       <div className={styles.explorationsCol1}>
@@ -31,6 +31,6 @@ function Explorations() {
       </div>
     </div>
   );
-}
+};
 
 export default Explorations;

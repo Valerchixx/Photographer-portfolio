@@ -1,8 +1,8 @@
 import React from 'react';
-import PropTypes from 'prop-types';
+import PropTypes, { string } from 'prop-types';
 import styles from './userInputs.module.css';
 
-function UserInputsView({ placeholders, handleData, handleAddUsers }) {
+const UserInputsView = ({ placeholders, handleData, handleAddUsers }) => {
   return (
     <tr>
       {placeholders.map((item) => (
@@ -23,9 +23,9 @@ function UserInputsView({ placeholders, handleData, handleAddUsers }) {
       </td>
     </tr>
   );
-}
+};
 UserInputsView.propTypes = {
-  placeholders: PropTypes.array.isRequired,
+  placeholders: PropTypes.arrayOf(PropTypes.shape(string)).isRequired,
   handleData: PropTypes.func.isRequired,
   handleAddUsers: PropTypes.func.isRequired,
 

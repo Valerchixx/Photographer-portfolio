@@ -1,9 +1,8 @@
 import React from 'react';
-import PropTypes from 'prop-types';
+import PropTypes, { number } from 'prop-types';
 import styles from './display.module.css';
 
-function Display(props) {
-  const { timer } = props;
+const Display = ({ timer }) => {
   return (
     <div className={styles.timer}>
       <span className={styles.span}>{timer.h >= 10 ? timer.h : `0${timer.h}`}</span>
@@ -16,9 +15,11 @@ function Display(props) {
     </div>
 
   );
-}
+};
 Display.propTypes = {
-  timer: PropTypes.object.isRequired,
+  timer: PropTypes.shape({
+    ms: number, s: number, m: number, h: number
+  }).isRequired,
 
 };
 export default Display;
