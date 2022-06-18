@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import styles from './review.module.css';
+import styles from './css/review.module.css';
 
 const Review = ({ email, body }) => {
   return (

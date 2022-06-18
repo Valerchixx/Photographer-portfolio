@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes, { number, string } from 'prop-types';
-import styles from './table.module.css';
+import styles from './css/table.module.css';
 import Person from '../../Components/Person/Person';
 import UserInputs from '../../Components/UserInputs/UserInputs';
 

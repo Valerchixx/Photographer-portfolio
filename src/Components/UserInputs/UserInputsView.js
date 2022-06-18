@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes, { string } from 'prop-types';
-import styles from './userInputs.module.css';
+import styles from './css/userInputs.module.css';
 
 const UserInputsView = ({ placeholders, handleData, handleAddUsers }) => {
   return (

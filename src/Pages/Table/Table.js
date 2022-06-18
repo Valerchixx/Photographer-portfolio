@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes, { number } from 'prop-types';
 import debounce from 'lodash.debounce';
 import withRouter from '../../utils/withRouter';
-import people from '../../utils/people';
+import people from '../../constants/people';
 import TableView from './TableView';
 import history from '../../utils/history';
 

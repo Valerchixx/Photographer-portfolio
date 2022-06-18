@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes, { number } from 'prop-types';
-import styles from './display.module.css';
+import styles from './css/display.module.css';
 
 const Display = ({ timer }) => {
   return (

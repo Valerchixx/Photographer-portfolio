@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes, { number, string } from 'prop-types';
-import styles from './person.module.css';
+import styles from './css/person.module.css';
 
 const Person = ({
   firstName, lastName, date, biography, id, active, index, updateObj, handleDelete,

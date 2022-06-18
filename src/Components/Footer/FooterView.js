@@ -5,7 +5,7 @@ import icon2 from '../../images/icon2.svg';
 import icon3 from '../../images/icon3.svg';
 import icon4 from '../../images/icon4.svg';
 import icon5 from '../../images/icon5.svg';
-import styles from './footer.module.css';
+import styles from './css/footer.module.css';
 
 class FooterView extends React.PureComponent {
   render() {

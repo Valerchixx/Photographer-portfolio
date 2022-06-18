@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import styles from './featured.module.css';
+import styles from './css/featured.module.css';
 import arrow from '../../images/arrow.svg';
 import item1 from '../../images/item1.jpg';
 import item2 from '../../images/item2.jpg';
