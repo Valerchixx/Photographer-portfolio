@@ -1,11 +1,13 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
+import ThemeContext from '../../utils/context/theme-context';
 import styles from './css/review.module.css';
 
 const Review = ({ email, body }) => {
+  const { theme } = useContext(ThemeContext);
   return (
-    <div className={styles.review}>
-      <div className={styles.title}>
+    <div className={theme === 'dark' ? styles.review : `${styles.review} ${styles.light}`}>
+      <div className={theme === 'dark' ? styles.title : `${styles.title} ${styles.light}`}>
         <p>{email}</p>
       </div>
       <div className={styles.body}>

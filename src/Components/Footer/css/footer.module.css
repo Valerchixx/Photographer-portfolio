@@ -7,6 +7,9 @@
 .copyright span{
     color: #fff;
 }
+.copyright.light span{
+    color: #525050;
+}
 .footerWrap{
     display: flex;
     justify-content: space-between;

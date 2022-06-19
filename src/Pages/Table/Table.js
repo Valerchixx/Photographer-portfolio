@@ -4,7 +4,7 @@ import debounce from 'lodash.debounce';
 import withRouter from '../../utils/withRouter';
 import people from '../../constants/people';
 import TableView from './TableView';
-import history from '../../utils/history';
+import history from '../../utils/history/history';
 
 class Table extends React.Component {
   constructor(props) {

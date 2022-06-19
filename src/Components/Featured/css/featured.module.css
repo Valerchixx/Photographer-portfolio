@@ -6,6 +6,10 @@
     font-family: 16px;
     font-weight: bold;
 }
+
+.featuredParag.light{
+    color: #6f6e6e;
+}
 .descr{
     display: flex;
     align-items: center;

@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import ThemeContext from '../../utils/context/theme-context';
 import icon1 from '../../images/icon1.svg';
 import icon2 from '../../images/icon2.svg';
 import icon3 from '../../images/icon3.svg';
@@ -9,11 +10,12 @@ import styles from './css/footer.module.css';
 
 class FooterView extends React.PureComponent {
   render() {
+    const { theme } = this.context;
     const { name, date } = this.props;
     return (
       <div className={styles.footerWrap}>
         <div>
-          <p className={styles.copyright}>
+          <p className={theme === 'dark' ? styles.copyright : `${styles.copyright} ${styles.light}`}>
             Made by
             {' '}
             <span>{name}</span>
@@ -40,4 +42,6 @@ FooterView.propTypes = {
   name: PropTypes.string.isRequired,
 
 };
+
+FooterView.contextType = ThemeContext;
 export default FooterView;

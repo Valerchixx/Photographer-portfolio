@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import ThemeContext from '../../utils/context/theme-context';
 import styles from './css/featured.module.css';
 import arrow from '../../images/arrow.svg';
 import item1 from '../../images/item1.jpg';
@@ -9,12 +10,19 @@ import item4 from '../../images/item4.jpg';
 
 class FeaturedView extends React.PureComponent {
   render() {
+    const { theme } = this.context;
     const { imgTitle, featuredTitle } = this.props;
     return (
       <div>
         <div className={styles.descr}>
           <img src={arrow} alt="" />
-          <p className={styles.featuredParag}>{featuredTitle}</p>
+          <p
+            className={theme === 'dark' ? styles.featuredParag
+              : `${styles.featuredParag} ${styles.light}`}
+          >
+            {featuredTitle}
+
+          </p>
         </div>
         <div className={styles.featuredItems}>
           <div>
@@ -63,4 +71,5 @@ FeaturedView.propTypes = {
   featuredTitle: PropTypes.string.isRequired,
 
 };
+FeaturedView.contextType = ThemeContext;
 export default FeaturedView;

@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes, { number, string } from 'prop-types';
 import Carousel from 'react-elastic-carousel';
+import ThemeContext from '../../utils/context/theme-context';
 import profile from '../../images/profile.svg';
 import styles from './css/home.module.css';
 import Header from '../../Components/Header/Header';
@@ -8,6 +9,7 @@ import Button from '../../Components/Button/Button';
 import Featured from '../../Components/Featured/Featured';
 import Title from '../../Components/Title/Title';
 import Explorations from '../../Components/Explorations/Explorations';
+import SwitchThemes from '../../Components/SwitchThemes/SwitchThemes';
 import Projects from '../../Components/Projects/Projects';
 import Footer from '../../Components/Footer/Footer';
 import Display from '../../Components/Display/Display';
@@ -26,15 +28,21 @@ class HomeView extends React.PureComponent {
       reviews,
       breakPoints,
     } = this.props;
+    const { theme } = this.context;
     return (
-      <div className={styles.wrappers}>
-        <div className={styles.header}>
+      <div className={theme === 'dark' ? styles.wrappers : `${styles.wrappers} ${styles.light}`}>
+        <div className={theme === 'dark' ? styles.header : `${styles.header} ${styles.light}`}>
           <div className={styles.container}>
-            <Header
-              goToFeatured={() => goToSection(featuredRef)}
-              goToProjects={() => goToSection(projectsRef)}
-              goToFooter={() => goToSection(footerRef)}
-            />
+            <div>
+              <Header
+                goToFeatured={() => goToSection(featuredRef)}
+                goToProjects={() => goToSection(projectsRef)}
+                goToFooter={() => goToSection(footerRef)}
+              />
+            </div>
+            <div className={styles.switchThemes}>
+              <SwitchThemes />
+            </div>
             <Display timer={timer} />
           </div>
         </div>
@@ -42,7 +50,7 @@ class HomeView extends React.PureComponent {
           <div className={styles.container}>
             <div className={styles.introInner}>
               <div>
-                <h2 className={styles.introH2}>
+                <h2 className={theme === 'dark' ? styles.introH2 : `${styles.introH2} ${styles.light}`}>
                   Hi, I am
                   {' '}
                   {name}
@@ -132,4 +140,5 @@ HomeView.propTypes = {
   })).isRequired,
   breakPoints: PropTypes.arrayOf(PropTypes.shape({ width: number, itemsToShow: number })).isRequired,
 };
+HomeView.contextType = ThemeContext;
 export default HomeView;

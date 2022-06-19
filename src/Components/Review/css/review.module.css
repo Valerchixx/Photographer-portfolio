@@ -1,5 +1,5 @@
 .review{
-    width: 300px;
+    max-width: 300px;
     padding: 8px 17px;
     border-radius: 4px;
     padding-bottom: 25px;
@@ -7,9 +7,19 @@
     background-color: rgba(243, 255, 255, 0.404);
     box-shadow: 3px 3px 14px 3px rgba(166, 168, 169, 0.2);
 }
+.review.light{
+    color: rgb(133, 132, 132);
+    background-color: rgba(185, 185, 185, 0.404);
+    box-shadow: 4px 4px 8px 0px rgba(34, 60, 80, 0.2);
+
+}
 .title{
     margin-bottom: 10px;
     font-size: 18px;
     color: rgb(197, 196, 196) ;
     font-weight: 600;
+}
+
+.title.light{
+    color: rgb(154, 154, 154);
 }
