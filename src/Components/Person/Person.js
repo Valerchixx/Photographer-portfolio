@@ -1,5 +1,5 @@
 import React from 'react';
-import PropTypes, { number, string } from 'prop-types';
+import PropTypes from 'prop-types';
 import styles from './css/person.module.css';
 
 const Person = ({
@@ -38,13 +38,7 @@ Person.propTypes = {
   index: PropTypes.number.isRequired,
   handleDelete: PropTypes.func.isRequired,
   updateObj: PropTypes.func.isRequired,
-  pers: PropTypes.shape({
-    biography: string,
-    date: string,
-    id: number,
-    name: PropTypes.shape({ firstName: string, lastName: string }),
-    order: number
-  }).isRequired,
+  pers: PropTypes.shape({}).isRequired,
   dragDropHandle: PropTypes.func.isRequired,
   dragStartHandle: PropTypes.func.isRequired,
   dragLeaveHandle: PropTypes.func.isRequired,

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import PropTypes, { number, string } from 'prop-types';
+import PropTypes from 'prop-types';
 import UserInputsView from './UserInputsView';
 
 const UserInputs = ({ setArr, setFlag, fullArr }) => {
@@ -46,13 +46,6 @@ const UserInputs = ({ setArr, setFlag, fullArr }) => {
 UserInputs.propTypes = {
   setArr: PropTypes.func.isRequired,
   setFlag: PropTypes.func.isRequired,
-  fullArr: PropTypes.arrayOf(PropTypes.shape({
-    biography: string,
-    date: string,
-    id: number,
-    name: PropTypes.shape({ firstName: string, lastName: string }),
-    order: number
-  })).isRequired,
-
+  fullArr: PropTypes.arrayOf(PropTypes.shape({})),
 };
 export default UserInputs;
