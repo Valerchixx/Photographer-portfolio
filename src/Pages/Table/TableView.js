@@ -24,7 +24,7 @@ const TableView = ({
             placeholder="enter id"
             name="id"
             value={searchValue}
-            onChange={(e) => handleSearch(e)}
+            onChange={(e) => { handleSearch(e); }}
             onBlur={setFlagValide}
             className={flagValide ? styles.searchInput : `${styles.searchInput} ${styles.wrong}`}
           />

@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import PropTypes, { number } from 'prop-types';
+import PropTypes, { string } from 'prop-types';
+import debounce from 'lodash.debounce';
 import { useNavigate } from 'react-router-dom';
 import withRouter from '../../utils/withRouter';
 import TableView from './TableView';
@@ -103,6 +104,15 @@ const Table = ({ params }) => {
     setFlag((prev) => !prev);
   };
 
+  const searching = (id) => {
+    const url = `/table/${id}`;
+    navigate(url);
+    const searchElems = fullArr.filter((item) => String(item.id).includes(id));
+    setArr(searchElems);
+  };
+
+  const debonceHandle = debounce(searching, 300);
+
   const handleSearch = (e) => {
     const { value } = e.target;
     let id = '';
@@ -114,15 +124,12 @@ const Table = ({ params }) => {
       id = '';
       flagV = false;
     }
-    const url = `/table/${id}`;
-    const searchElems = fullArr.filter((item) => String(item.id).includes(id));
-    setArr(searchElems);
-    navigate(url);
     setSearchValue(id);
     setUpdate((prev) => ({
       ...prev,
       id
     }));
+    debonceHandle(id);
     setFlagValide(flagV);
   };
 
@@ -173,7 +180,7 @@ const Table = ({ params }) => {
 };
 
 Table.propTypes = {
-  params: PropTypes.shape({ id: number }).isRequired,
+  params: PropTypes.shape({ id: string }).isRequired,
 };
 
 export default withRouter(Table);
