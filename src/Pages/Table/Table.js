@@ -1,104 +1,71 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes, { number } from 'prop-types';
-import debounce from 'lodash.debounce';
+import { useNavigate } from 'react-router-dom';
 import withRouter from '../../utils/withRouter';
-import people from '../../constants/people';
 import TableView from './TableView';
-import history from '../../utils/history/history';
+import people from '../../constants/people';
 
-class Table extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      flag: false,
-      flagSort: false,
-      arr: people,
-      fullarr: people,
-      update: {
-        id: 0,
-        biography: '',
-      },
-      activeIndex: 0,
-      currPerson: null,
-      flagSorting: true,
-      searchValue: '',
-      flagValide: true,
-      activeElem: -1,
-    };
-    this.debonceHandleSearch = debounce(this.handleSearch, 300);
-  }
-  // sorting without sort function
-  // function sorting(arr) {
-  //   let done = false;
-  //   while (!done) {
-  //     done = true;
-  //     for (let i = 1; i < arr.length; i += 1) {
-  //       if (arr[i - 1].id > arr[i].id) {
-  //         done = false;
-  //         const tmp = arr[i - 1].id;
-  //         arr[i - 1].id = arr[i].id;
-  //         arr[i].id = tmp;
-  //       }
-  //     }
-  //   }
-  //   return arr;
-  // }
+const Table = ({ params }) => {
+  const [arr, setArr] = useState(people);
+  const [flag, setFlag] = useState(false);
+  const [activeIndex, setActiveIndex] = useState(0);
+  const [fullArr, setFullArr] = useState(people);
+  const [flagSort, setFlagSort] = useState(false);
+  const [flagSorting, setFlagSorting] = useState(true);
+  const [currPerson, setCurrPerson] = useState(null);
+  const [activeElem, setActiveElem] = useState(-1);
+  const [update, setUpdate] = useState({ id: 0, biography: '' });
+  const [searchValue, setSearchValue] = useState('');
+  const [flagValide, setFlagValide] = useState(true);
+  const navigate = useNavigate();
 
-  componentDidMount() {
-    const { fullarr } = this.state;
-    const { params } = this.props;
+  const increment = () => {
+    setActiveIndex((prev) => (prev > 0 ? prev - 1 : prev));
+  };
+
+  const decrement = () => {
+    setActiveIndex((prev) => (prev < arr.length - 1 ? prev + 1 : prev));
+  };
+  useEffect(() => {
     document.addEventListener('keydown', (e) => {
       if (e.keyCode === 38) {
-        this.increment();
+        increment();
       } else if (e.keyCode === 40) {
-        this.decrement();
+        decrement();
       }
     });
+
     if (Number(params.id)) {
-      const searchElem = fullarr.filter((item) => String(item.id).includes(Number(params.id)));
-      this.setState({ arr: searchElem, searchValue: params.id });
+      const searchElem = fullArr.filter((item) => String(item.id).includes(Number(params.id)));
+      setArr(searchElem);
+      setSearchValue(params.id);
     }
-  }
+  }, []);
 
-  dragStartHandle = (e, pers) => {
-    this.setState({ currPerson: pers });
+  const handleFlagSorting = () => {
+    setFlagSorting(true);
   };
 
-  dragDropHandle = (e, pers) => {
+  const handleDelete = (itemId) => {
+    const items = fullArr.filter((item) => item.id !== itemId);
+    setArr(items);
+    setFullArr(items);
+  };
+
+  const dragStartHandle = (e, pers) => {
+    setCurrPerson(pers);
+  };
+
+  const dragLeaveHandle = () => {
+    setFlagSorting(false);
+  };
+
+  const dragOverHandle = (e, i) => {
     e.preventDefault();
-    this.setState(({ arr }) => ({
-      arr: [...arr.map((item) => this.changeOrder(item, pers))]
-        .sort((a, b) => ((a.id > b.id) ? 1 : -1)),
-      flagSorting: false,
-      activeElem: -1,
-    }));
+    setActiveElem(i);
   };
 
-  dragLeaveHandle = () => {
-    this.setState({ flagSorting: false });
-  };
-
-  dragOverHandle = (e, i) => {
-    e.preventDefault();
-    this.setState({ activeElem: i });
-  };
-
-  validateId = (e) => {
-    const { value } = e.target;
-    let id = '';
-    let flag = null;
-    if (Number.isInteger(+value)) {
-      id = value;
-      flag = true;
-    } else {
-      id = '';
-      flag = false;
-    }
-    this.setState({ searchValue: id, update: { id }, flagValide: flag });
-  };
-
-  changeOrder = (item, pers) => {
-    const { currPerson } = this.state;
+  const changeOrder = (item, pers) => {
     if (item.order === pers.order) {
       return { ...item, order: currPerson.order };
     } if (item.order === currPerson.order) {
@@ -108,134 +75,102 @@ class Table extends React.Component {
     return item;
   };
 
-  handleDelete = (itemId) => {
-    const { fullarr } = this.state;
-    const items = fullarr.filter((item) => item.id !== itemId);
-    this.setState({ arr: items, fullarr: items });
+  const dragDropHandle = (e, pers) => {
+    e.preventDefault();
+    setArr((prev) => [...prev.map((item) => changeOrder(item, pers))].sort((a, b) => ((a.id > b.id) ? 1 : -1)));
+    setFlagSorting(false);
+    setActiveElem(-1);
   };
 
-  handleGetData = (e) => {
+  const handleData = (e) => {
     const { value } = e.target;
-    this.setState((prevState) => ({
-      update: {
-        ...prevState.update,
-        [e.target.name]: value,
-      },
+    setUpdate({
+      ...update,
+      [e.target.name]: value,
+    });
+  };
 
+  const updateObj = (index) => {
+    setArr((prev) => [...prev.filter((it, i) => i !== index), { ...prev[index], biography: update.biography }]);
+    setFullArr((prev) => [...prev.filter((it, i) => i !== index), { ...prev[index], biography: update.biography }]);
+  };
+
+  const updateFlag = () => {
+    setFlag(false);
+  };
+
+  const changeFlag = () => {
+    setFlag((prev) => !prev);
+  };
+
+  const handleSearch = (e) => {
+    const { value } = e.target;
+    let id = '';
+    let flagV = null;
+    if (Number.isInteger(+value)) {
+      id = value;
+      flagV = true;
+    } else {
+      id = '';
+      flagV = false;
+    }
+    const url = `/table/${id}`;
+    const searchElems = fullArr.filter((item) => String(item.id).includes(id));
+    setArr(searchElems);
+    navigate(url);
+    setSearchValue(id);
+    setUpdate((prev) => ({
+      ...prev,
+      id
     }));
+    setFlagValide(flagV);
   };
 
-  handleSearch = () => {
-    const { fullarr, update } = this.state;
-    const url = `/table/${update.id}`;
-    const searchElem = fullarr.filter((item) => String(item.id).includes(update.id));
-    this.setState({ arr: searchElem });
-    history.push(url);
+  const updateArray = (newObj) => {
+    setArr((prev) => [...prev, newObj]);
+    setFullArr((prev) => [...prev, newObj]);
   };
 
-  updateObj = (index) => {
-    this.setState(({ arr, fullarr, update }) => ({
-      arr: [...arr.filter((it, i) => i !== index), { ...arr[index], biography: update.biography }],
-      fullarr: [...fullarr.filter((it, i) => i !== index),
-        { ...fullarr[index], biography: update.biography }],
-    }));
-  };
-
-  updateFlag = () => {
-    this.setState({ flag: false });
-  };
-
-  updateArray = (newobj) => {
-    this.setState((prevState) => ({
-      arr: [...prevState.arr, newobj],
-      fullarr: [...prevState.fullarr, newobj],
-    }));
-  };
-
-  changeFlag = () => {
-    const { flag } = this.state;
-    this.setState({ flag: !flag });
-  };
-
-  searching = (e) => {
-    this.handleGetData(e);
-    this.debonceHandleSearch();
-  };
-
-  sortArray = () => {
-    const { fullarr, flagSort } = this.state;
-    const newArr = [...fullarr];
+  const sortArray = () => {
+    const newArr = [...fullArr];
     if (flagSort) {
       newArr.sort((a, b) => ((a.id < b.id) ? 1 : -1));
     } else {
       newArr.sort((a, b) => ((a.id > b.id) ? 1 : -1));
     }
-    this.setState((prevState) => ({
-      arr: newArr,
-      flagSort: !prevState.flagSort,
-    }));
+
+    setArr(newArr);
+    setFlagSort((prev) => !prev);
   };
 
-  increment = () => {
-    const { activeIndex } = this.state;
-    this.setState(() => ({
-      activeIndex: activeIndex > 0 ? activeIndex - 1 : activeIndex,
-    }));
-  };
+  return (
+    <TableView
+      arr={arr}
+      actives={activeIndex}
+      fullArr={fullArr}
+      flagSorting={flagSorting}
+      activeElem={activeElem}
+      setSorting={handleFlagSorting}
+      handleDelete={handleDelete}
+      dragDropHandle={dragDropHandle}
+      dragLeaveHandle={dragLeaveHandle}
+      dragOverHandle={dragOverHandle}
+      dragStartHandle={dragStartHandle}
+      handleGetData={handleData}
+      updateObj={updateObj}
+      changeFlag={changeFlag}
+      updateFlag={updateFlag}
+      flag={flag}
+      searchValue={searchValue}
+      flagValide={flagValide}
+      setFlagValide={() => setFlagValide(true)}
+      updateArray={updateArray}
+      sortArray={sortArray}
+      handleSearch={handleSearch}
+    />
 
-  decrement = () => {
-    const { activeIndex, arr } = this.state;
-    this.setState((prevState) => ({
-      activeIndex: activeIndex < arr.length - 1 ? prevState.activeIndex + 1 : activeIndex,
-    }));
-  };
-
-  setFlagSorting = () => {
-    this.setState({ flagSorting: true });
-  };
-
-  setFlagValide = () => {
-    this.setState({ flagValide: true });
-  };
-
-  render() {
-    const {
-      flag, arr, activeIndex, fullarr, flagSorting, searchValue,
-      flagValide, activeElem,
-    } = this.state;
-    return (
-      <TableView
-        arr={arr}
-        flag={flag}
-        handleDelete={this.handleDelete}
-        handleGetData={this.handleGetData}
-        updateArray={this.updateArray}
-        updateFlag={this.updateFlag}
-        updateObj={this.updateObj}
-        changeFlag={this.changeFlag}
-        sortArray={this.sortArray}
-        searching={this.searching}
-        increment={this.increment}
-        decrement={this.decrement}
-        actives={activeIndex}
-        dragStartHandle={this.dragStartHandle}
-        dragLeaveHandle={this.dragLeaveHandle}
-        dragOverHandle={this.dragOverHandle}
-        dragDropHandle={this.dragDropHandle}
-        fullArr={fullarr}
-        flagSorting={flagSorting}
-        setSorting={this.setFlagSorting}
-        searchValue={searchValue}
-        validateId={this.validateId}
-        flagValide={flagValide}
-        setFlagValide={this.setFlagValide}
-        activeElem={activeElem}
-
-      />
-
-    );
-  }
-}
+  );
+};
 
 Table.propTypes = {
   params: PropTypes.shape({ id: number }).isRequired,

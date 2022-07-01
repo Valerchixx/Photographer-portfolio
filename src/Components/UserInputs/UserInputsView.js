@@ -1,14 +1,14 @@
 import React from 'react';
-import PropTypes, { string } from 'prop-types';
+import PropTypes from 'prop-types';
 import styles from './css/userInputs.module.css';
 
 const UserInputsView = ({ placeholders, handleData, handleAddUsers }) => {
   return (
-    <tr>
+    <tr key={8}>
       {placeholders.map((item) => (
-        <td key={item.id}>
+        <td key={item}>
           <input
-            key={item.id}
+            key={item}
             type="text"
             onChange={handleData}
             className={styles.input}
@@ -25,7 +25,7 @@ const UserInputsView = ({ placeholders, handleData, handleAddUsers }) => {
   );
 };
 UserInputsView.propTypes = {
-  placeholders: PropTypes.arrayOf(PropTypes.shape(string)).isRequired,
+  placeholders: PropTypes.arrayOf(PropTypes.string).isRequired,
   handleData: PropTypes.func.isRequired,
   handleAddUsers: PropTypes.func.isRequired,
 

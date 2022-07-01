@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import PropTypes, { number, string } from 'prop-types';
 import Carousel from 'react-elastic-carousel';
 import ThemeContext from '../../utils/context/theme-context';
@@ -15,112 +15,110 @@ import Footer from '../../Components/Footer/Footer';
 import Display from '../../Components/Display/Display';
 import Review from '../../Components/Review/Review';
 
-class HomeView extends React.PureComponent {
-  render() {
-    const {
-      name,
-      description,
-      goToSection,
-      footerRef,
-      projectsRef,
-      featuredRef,
-      timer,
-      reviews,
-      breakPoints,
-    } = this.props;
-    const { theme } = this.context;
-    return (
-      <div className={theme === 'dark' ? styles.wrappers : `${styles.wrappers} ${styles.light}`}>
-        <div className={theme === 'dark' ? styles.header : `${styles.header} ${styles.light}`}>
-          <div className={styles.container}>
+const HomeView = ({
+  name,
+  description,
+  goToSection,
+  footerRef,
+  projectsRef,
+  featuredRef,
+  timer,
+  reviews,
+  breakPoints,
+
+}) => {
+  const { theme } = useContext(ThemeContext);
+  return (
+    <div className={theme === 'dark' ? styles.wrappers : `${styles.wrappers} ${styles.light}`}>
+      <div className={theme === 'dark' ? styles.header : `${styles.header} ${styles.light}`}>
+        <div className={styles.container}>
+          <div>
+            <Header
+              goToFeatured={() => goToSection(featuredRef)}
+              goToProjects={() => goToSection(projectsRef)}
+              goToFooter={() => goToSection(footerRef)}
+            />
+          </div>
+          <div className={styles.switchThemes}>
+            <SwitchThemes />
+          </div>
+          <Display timer={timer} />
+        </div>
+      </div>
+      <div>
+        <div className={styles.container}>
+          <div className={styles.introInner}>
             <div>
-              <Header
-                goToFeatured={() => goToSection(featuredRef)}
-                goToProjects={() => goToSection(projectsRef)}
-                goToFooter={() => goToSection(footerRef)}
-              />
-            </div>
-            <div className={styles.switchThemes}>
-              <SwitchThemes />
-            </div>
-            <Display timer={timer} />
-          </div>
-        </div>
-        <div>
-          <div className={styles.container}>
-            <div className={styles.introInner}>
-              <div>
-                <h2 className={theme === 'dark' ? styles.introH2 : `${styles.introH2} ${styles.light}`}>
-                  Hi, I am
-                  {' '}
-                  {name}
-                  {' '}
-                  A Product Designer
-                  based in City.
-                </h2>
-                <p className={styles.introParag}>
-                  {description}
-                </p>
-                <div className={styles.introBtn}>
-                  <Button gmail="v.proshachenko@gmail.com" />
-                </div>
-              </div>
-              <div className={styles.imgWrap}>
-                <img src={profile} alt="profile img" />
+              <h2 className={theme === 'dark' ? styles.introH2 : `${styles.introH2} ${styles.light}`}>
+                Hi, I am
+                {' '}
+                {name}
+                {' '}
+                A Product Designer
+                based in City.
+              </h2>
+              <p className={styles.introParag}>
+                {description}
+              </p>
+              <div className={styles.introBtn}>
+                <Button gmail="v.proshachenko@gmail.com" />
               </div>
             </div>
-          </div>
-        </div>
-        <div id={styles.featured} ref={featuredRef}>
-          <div className={styles.container}>
-            <Featured />
-          </div>
-        </div>
-        <div>
-          <div className={styles.container}>
-            <Title text="Visual Explorations" />
-            <Explorations />
-          </div>
-        </div>
-        <div ref={projectsRef}>
-          <div className={styles.container}>
-            <Title text="Personal Projects" />
-            <Projects />
-          </div>
-        </div>
-        <div className={styles.reviews}>
-          <Title text="Reviews" />
-          <div className={styles.reviewsWrap}>
-            <Carousel breakPoints={breakPoints}>
-              {reviews.slice(0, 9).map((item) => (
-                <div key={item.id}>
-                  <Review email={item.email} body={item.body} />
-                </div>
-              ))}
-            </Carousel>
-          </div>
-        </div>
-        <div>
-          <div className={styles.container}>
-            <Title text="Contact Me" />
-            <p className={styles.contactParag}>
-              If you are looking to hire a product designer,
-              I’m currently available for freelance work
-            </p>
-            <div className={styles.contactBtnWrap}>
-              <Button gmail="v.proshachenko@gmail.com" />
+            <div className={styles.imgWrap}>
+              <img src={profile} alt="profile img" />
             </div>
-          </div>
-        </div>
-        <div ref={footerRef}>
-          <div className={styles.container}>
-            <Footer />
           </div>
         </div>
       </div>
-    );
-  }
-}
+      <div id={styles.featured} ref={featuredRef}>
+        <div className={styles.container}>
+          <Featured />
+        </div>
+      </div>
+      <div>
+        <div className={styles.container}>
+          <Title text="Visual Explorations" />
+          <Explorations />
+        </div>
+      </div>
+      <div ref={projectsRef}>
+        <div className={styles.container}>
+          <Title text="Personal Projects" />
+          <Projects />
+        </div>
+      </div>
+      <div className={styles.reviews}>
+        <Title text="Reviews" />
+        <div className={styles.reviewsWrap}>
+          <Carousel breakPoints={breakPoints}>
+            {reviews.slice(0, 9).map((item) => (
+              <div key={item.id}>
+                <Review email={item.email} body={item.body} />
+              </div>
+            ))}
+          </Carousel>
+        </div>
+      </div>
+      <div>
+        <div className={styles.container}>
+          <Title text="Contact Me" />
+          <p className={styles.contactParag}>
+            If you are looking to hire a product designer,
+            I’m currently available for freelance work
+          </p>
+          <div className={styles.contactBtnWrap}>
+            <Button gmail="v.proshachenko@gmail.com" />
+          </div>
+        </div>
+      </div>
+      <div ref={footerRef}>
+        <div className={styles.container}>
+          <Footer />
+        </div>
+      </div>
+    </div>
+  );
+};
 HomeView.propTypes = {
   name: PropTypes.string.isRequired,
   description: PropTypes.string.isRequired,
@@ -140,5 +138,4 @@ HomeView.propTypes = {
   })).isRequired,
   breakPoints: PropTypes.arrayOf(PropTypes.shape({ width: number, itemsToShow: number })).isRequired,
 };
-HomeView.contextType = ThemeContext;
 export default HomeView;

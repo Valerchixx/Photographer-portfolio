@@ -8,7 +8,7 @@ import {
 import ThemeContext from './utils/context/theme-context';
 import Home from './Pages/Home/Home';
 import themes from './utils/colorTheme/themes';
-import Table from './Pages/Table/Table';
+import TableF from './Pages/Table/Table';
 
 const App = () => {
   const [theme, setTheme] = useState(themes.darkTheme);
@@ -22,8 +22,8 @@ const App = () => {
         <Router>
           <Routes>
             <Route path="/web-react" element={<Home />} />
-            <Route path="/table/" element={<Table />} />
-            <Route path="/table/:id" element={<Table />} />
+            <Route path="/table/" element={<TableF />} />
+            <Route path="/table/:id" element={<TableF />} />
           </Routes>
         </Router>
       </div>

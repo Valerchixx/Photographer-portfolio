@@ -1,95 +1,76 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import HomeView from './HomeView';
 
-class Home extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      name: 'Alexander',
-      description: ` I help businesses and companies reach
-      their goals by designing user-centric digital
-      products & interactive experiences.`,
-      timer: {
-        ms: 0,
-        s: 0,
-        m: 0,
-        h: 0,
-      },
-      time: 0,
-      reviews: [],
+const Home = () => {
+  const [name] = useState('Alexander');
+  const [description] = useState(
+    ` I help businesses and companies reach
+    their goals by designing user-centric digital
+    products & interactive experiences.`
+  );
+  const [reviews, setReviews] = useState([]);
+  const [timer, setTimer] = useState({
+    ms: 0,
+    s: 0,
+    m: 0,
+    h: 0,
+  });
+  const [time] = useState(+new Date());
 
-    };
-    this.interv = '';
-    const { timer } = this.state;
-    this.featuredRef = React.createRef(null);
-    this.projectsRef = React.createRef(null);
-    this.footerRef = React.createRef(null);
-    this.goToSection = (section) => window.scrollTo({ top: section.current.offsetTop, behavior: 'smooth' });
-    this.updateH = timer.h;
-    this.updateM = timer.m;
-    this.updateS = timer.s;
-    this.updateMs = timer.ms;
-    this.breakPoints = [
-      { width: 200, itemsToShow: 1 },
-      { width: 800, itemsToShow: 2 },
-      { width: 1200, itemsToShow: 3 },
-    ];
+  const featuredRef = React.createRef(null);
+  const projectsRef = React.createRef(null);
+  const footerRef = React.createRef(null);
+  const goToSection = (section) => window.scrollTo({ top: section.current.offsetTop, behavior: 'smooth' });
+  const breakPoints = [
+    { width: 200, itemsToShow: 1 },
+    { width: 800, itemsToShow: 2 },
+    { width: 1200, itemsToShow: 3 },
+  ];
 
-    this.run = () => {
-      const { time } = this.state;
-      const currentTime = +new Date();
-      this.updateMs = Math.floor(((currentTime - time) / 10) % 100);
-      this.updateS = Math.floor(((currentTime - time) / 1000) % 60);
-      this.updateM = Math.floor(((currentTime - time) / 1000 / 60) % 60);
-      this.updateH = Math.floor(((currentTime - time) / (1000 * 60 * 60)) % 24);
-      this.setState({
-        timer: {
-          ms: this.updateMs, s: this.updateS, m: this.updateM, h: this.updateH,
-        },
-      });
-    };
-    this.stop = () => {
-      clearInterval(this.interv);
-    };
-  }
+  let updateH = timer.h;
+  let updateM = timer.m;
+  let updateS = timer.s;
+  let updateMs = timer.ms;
 
-  componentDidMount() {
-    this.setState({ time: +new Date() });
-    this.interv = setInterval(() => {
-      this.run();
-    }, 100);
+  const run = () => {
+    const currentTime = +new Date();
+    updateMs = Math.floor(((currentTime - time) / 10) % 100);
+    updateS = Math.floor(((currentTime - time) / 1000) % 60);
+    updateM = Math.floor(((currentTime - time) / 1000 / 60) % 60);
+    updateH = Math.floor(((currentTime - time) / (1000 * 60 * 60)) % 24);
+    setTimer({
+      ms: updateMs, m: updateM, s: updateS, h: updateH
+    });
+  };
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      run();
+    }, 10);
     fetch('https://jsonplaceholder.typicode.com/comments')
-      .then((res) => res.json())
-      .then((json) => this.setState({ reviews: json }));
-  }
+      .then((response) => {
+        return response.json();
+      })
+      .then((data) => {
+        setReviews(data);
+      });
+    return () => clearInterval(interval);
+  }, []);
 
-  componentWillUnmount() {
-    this.stop();
-  }
+  return (
+    <HomeView
+      name={name}
+      description={description}
+      goToSection={goToSection}
+      footerRef={footerRef}
+      featuredRef={featuredRef}
+      projectsRef={projectsRef}
+      timer={timer}
+      reviews={reviews}
+      breakPoints={breakPoints}
+    />
 
-  render() {
-    const {
-      name, description, timer, status, reviews,
-    } = this.state;
-    return (
-      <HomeView
-        name={name}
-        description={description}
-        goToSection={this.goToSection}
-        footerRef={this.footerRef}
-        featuredRef={this.featuredRef}
-        projectsRef={this.projectsRef}
-        timer={timer}
-        start={this.start}
-        status={status}
-        stop={this.stop}
-        reset={this.reset}
-        reviews={reviews}
-        breakPoints={this.breakPoints}
-      />
-
-    );
-  }
-}
+  );
+};
 
 export default Home;

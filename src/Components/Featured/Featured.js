@@ -1,22 +1,14 @@
-import React from 'react';
+import React, { useState } from 'react';
 import FeaturedView from './FeaturedView';
 
-class Featured extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      featuredTitle: 'Featured Work',
-      imgTitle: 'InVersion',
+const Featured = () => {
+  const [featuredTitle] = useState('Featured Work');
+  const [imgTitle] = useState('InVersion');
 
-    };
-  }
+  return (
+    <FeaturedView imgTitle={imgTitle} featuredTitle={featuredTitle} />
 
-  render() {
-    const { featuredTitle, imgTitle } = this.state;
-    return (
-      <FeaturedView imgTitle={imgTitle} featuredTitle={featuredTitle} />
+  );
+};
 
-    );
-  }
-}
 export default Featured;
