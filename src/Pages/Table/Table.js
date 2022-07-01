@@ -92,8 +92,8 @@ const Table = ({ params }) => {
   };
 
   const updateObj = (index) => {
-    setArr((prev) => [...prev.filter((it, i) => i !== index), { ...prev[index], biography: update.biography }]);
-    setFullArr((prev) => [...prev.filter((it, i) => i !== index), { ...prev[index], biography: update.biography }]);
+    setArr((prev) => prev.map((item, i) => (i === index ? { ...item, biography: update.biography } : item)));
+    setFullArr((prev) => prev.map((item, i) => (i === index ? { ...item, biography: update.biography } : item)));
   };
 
   const updateFlag = () => {
