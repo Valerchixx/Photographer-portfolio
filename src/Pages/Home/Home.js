@@ -3,11 +3,6 @@ import HomeView from './HomeView';
 
 const Home = () => {
   const [name] = useState('Alexander');
-  const [description] = useState(
-    ` I help businesses and companies reach
-    their goals by designing user-centric digital
-    products & interactive experiences.`
-  );
   const [reviews, setReviews] = useState([]);
   const [timer, setTimer] = useState({
     ms: 0,
@@ -60,7 +55,6 @@ const Home = () => {
   return (
     <HomeView
       name={name}
-      description={description}
       goToSection={goToSection}
       footerRef={footerRef}
       featuredRef={featuredRef}

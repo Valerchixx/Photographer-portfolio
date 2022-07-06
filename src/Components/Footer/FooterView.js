@@ -1,5 +1,6 @@
 import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
+import i18n from '../../i18n';
 import ThemeContext from '../../utils/context/theme-context';
 import icon1 from '../../images/icon1.svg';
 import icon2 from '../../images/icon2.svg';
@@ -8,7 +9,7 @@ import icon4 from '../../images/icon4.svg';
 import icon5 from '../../images/icon5.svg';
 import styles from './css/footer.module.css';
 
-const FooterView = ({ name, date }) => {
+const FooterView = ({ name, date, changeLang }) => {
   const { theme } = useContext(ThemeContext);
   return (
     <div className={styles.footerWrap}>
@@ -30,6 +31,13 @@ const FooterView = ({ name, date }) => {
         <div><img className={styles.icon} src={icon4} alt="icon" /></div>
         <div><img className={styles.icon} src={icon5} alt="icon" /></div>
       </div>
+      <div>
+        <select defaultValue={i18n.language} name="language" onChange={changeLang}>
+          <option value="en">English</option>
+          <option value="fr">French</option>
+          <option value="ua">Український</option>
+        </select>
+      </div>
     </div>
 
   );
@@ -38,6 +46,7 @@ const FooterView = ({ name, date }) => {
 FooterView.propTypes = {
   date: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
+  changeLang: PropTypes.func.isRequired,
 
 };
 export default FooterView;

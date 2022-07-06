@@ -1,4 +1,5 @@
 import React, { useContext } from 'react';
+import { useTranslation } from 'react-i18next';
 import PropTypes from 'prop-types';
 import ThemeContext from '../../utils/context/theme-context';
 import styles from './css/featured.module.css';
@@ -9,12 +10,13 @@ import item2 from '../../images/item2.jpg';
 import item3 from '../../images/item3.jpg';
 import item4 from '../../images/item4.jpg';
 
-const FeaturedView = ({ featuredTitle, imgTitle }) => {
+const FeaturedView = ({ imgTitle }) => {
   const itemsCol1 = [item1, item2];
 
   const itemsCol2 = [item3, item4];
 
   const { theme } = useContext(ThemeContext);
+  const { t } = useTranslation();
   return (
     <div>
       <div className={styles.descr}>
@@ -23,7 +25,7 @@ const FeaturedView = ({ featuredTitle, imgTitle }) => {
           className={theme === 'dark' ? styles.featuredParag
             : `${styles.featuredParag} ${styles.light}`}
         >
-          {featuredTitle}
+          {t('featured')}
 
         </p>
       </div>
@@ -41,7 +43,5 @@ const FeaturedView = ({ featuredTitle, imgTitle }) => {
 
 FeaturedView.propTypes = {
   imgTitle: PropTypes.string.isRequired,
-  featuredTitle: PropTypes.string.isRequired,
-
 };
 export default FeaturedView;

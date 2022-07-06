@@ -1,4 +1,5 @@
 import React, { useContext } from 'react';
+import { useTranslation } from 'react-i18next';
 import PropTypes, { number, string } from 'prop-types';
 import Carousel from 'react-elastic-carousel';
 import ThemeContext from '../../utils/context/theme-context';
@@ -17,7 +18,6 @@ import Review from '../../Components/Review/Review';
 
 const HomeView = ({
   name,
-  description,
   goToSection,
   footerRef,
   projectsRef,
@@ -28,6 +28,7 @@ const HomeView = ({
 
 }) => {
   const { theme } = useContext(ThemeContext);
+  const { t } = useTranslation();
   return (
     <div className={theme === 'dark' ? styles.wrappers : `${styles.wrappers} ${styles.light}`}>
       <div className={theme === 'dark' ? styles.header : `${styles.header} ${styles.light}`}>
@@ -50,15 +51,10 @@ const HomeView = ({
           <div className={styles.introInner}>
             <div>
               <h2 className={theme === 'dark' ? styles.introH2 : `${styles.introH2} ${styles.light}`}>
-                Hi, I am
-                {' '}
-                {name}
-                {' '}
-                A Product Designer
-                based in City.
+                {t('intro', { name })}
               </h2>
               <p className={styles.introParag}>
-                {description}
+                {t('descr')}
               </p>
               <div className={styles.introBtn}>
                 <Button gmail="v.proshachenko@gmail.com" />
@@ -77,18 +73,18 @@ const HomeView = ({
       </div>
       <div>
         <div className={styles.container}>
-          <Title text="Visual Explorations" />
+          <Title text={t('visual')} />
           <Explorations />
         </div>
       </div>
       <div ref={projectsRef}>
         <div className={styles.container}>
-          <Title text="Personal Projects" />
+          <Title text={t('projects')} />
           <Projects />
         </div>
       </div>
       <div className={styles.reviews}>
-        <Title text="Reviews" />
+        <Title text={t('reviews')} />
         <div className={styles.reviewsWrap}>
           <Carousel breakPoints={breakPoints}>
             {reviews.slice(0, 9).map((item) => (
@@ -101,11 +97,8 @@ const HomeView = ({
       </div>
       <div>
         <div className={styles.container}>
-          <Title text="Contact Me" />
-          <p className={styles.contactParag}>
-            If you are looking to hire a product designer,
-            I’m currently available for freelance work
-          </p>
+          <Title text={t('contact')} />
+          <p className={styles.contactParag}>{t('contactMe')}</p>
           <div className={styles.contactBtnWrap}>
             <Button gmail="v.proshachenko@gmail.com" />
           </div>
@@ -121,7 +114,6 @@ const HomeView = ({
 };
 HomeView.propTypes = {
   name: PropTypes.string.isRequired,
-  description: PropTypes.string.isRequired,
   goToSection: PropTypes.func.isRequired,
   footerRef: PropTypes.shape({}).isRequired,
   projectsRef: PropTypes.shape({}).isRequired,
