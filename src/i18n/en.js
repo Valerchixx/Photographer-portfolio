@@ -8,6 +8,11 @@ export default {
   visual: 'Visual Explorations',
   projects: 'Personal Projects',
   reviews: 'Reviews',
-  contact: 'Contact Me'
+  contact: 'Contact Me',
+  copyright: 'Made by {{name, string}} — Copyright',
+  featuredH: 'Featured',
+  tableH: 'Table',
+  contactH: 'Contact',
+  workH: 'Work'
 
 };

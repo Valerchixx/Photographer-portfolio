@@ -4,7 +4,7 @@ import styles from './css/userInputs.module.css';
 
 const UserInputsView = ({ placeholders, handleData, handleAddUsers }) => {
   return (
-    <tr key={8}>
+    <tr>
       {placeholders.map((item) => (
         <td key={item}>
           <input

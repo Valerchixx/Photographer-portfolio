@@ -7,5 +7,11 @@ export default {
   visual: 'Візуальне бачення',
   projects: 'Персональні проєкти',
   reviews: 'Відгуки',
-  contact: "Зв'язок зі мною"
+  contact: "Зв'язок зі мною",
+  copyright: 'розроблено {{name, string}} — авторське право',
+  featuredH: 'Вибране',
+  tableH: 'Таблиця',
+  contactH: 'Контакти',
+  workH: 'Роботи'
+
 };

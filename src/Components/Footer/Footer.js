@@ -4,7 +4,7 @@ import FooterView from './FooterView';
 
 const Footer = () => {
   const [name] = useState('Valeria Proshachenko');
-  const [date] = useState('2021');
+  const [date] = useState('2022');
 
   const changeLang = (event) => {
     i18n.changeLanguage(event.target.value);

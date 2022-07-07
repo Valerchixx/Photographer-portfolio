@@ -9,5 +9,10 @@ export default {
   visual: 'Illustrations designs',
   projects: 'Projets personnels',
   reviews: 'Avis client',
-  contact: 'Contactez moi'
+  contact: 'Contactez moi',
+  copyright: "faite par {{name, string}} — droits d'auteur",
+  featuredH: 'Mis en exergue',
+  tableH: 'Table',
+  contactH: 'Contactez',
+  workH: 'Travailler'
 };

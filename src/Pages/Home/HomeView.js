@@ -2,6 +2,7 @@ import React, { useContext } from 'react';
 import { useTranslation } from 'react-i18next';
 import PropTypes, { number, string } from 'prop-types';
 import Carousel from 'react-elastic-carousel';
+import i18n from '../../i18n';
 import ThemeContext from '../../utils/context/theme-context';
 import profile from '../../images/profile.svg';
 import styles from './css/home.module.css';
@@ -29,6 +30,7 @@ const HomeView = ({
 }) => {
   const { theme } = useContext(ThemeContext);
   const { t } = useTranslation();
+  const author = i18n.language === 'ua' ? 'Олександр' : name;
   return (
     <div className={theme === 'dark' ? styles.wrappers : `${styles.wrappers} ${styles.light}`}>
       <div className={theme === 'dark' ? styles.header : `${styles.header} ${styles.light}`}>
@@ -49,9 +51,9 @@ const HomeView = ({
       <div>
         <div className={styles.container}>
           <div className={styles.introInner}>
-            <div>
+            <div className={styles.introHh}>
               <h2 className={theme === 'dark' ? styles.introH2 : `${styles.introH2} ${styles.light}`}>
-                {t('intro', { name })}
+                {t('intro', { name: author })}
               </h2>
               <p className={styles.introParag}>
                 {t('descr')}

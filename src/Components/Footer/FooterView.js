@@ -1,5 +1,6 @@
 import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
+import { useTranslation } from 'react-i18next';
 import i18n from '../../i18n';
 import ThemeContext from '../../utils/context/theme-context';
 import icon1 from '../../images/icon1.svg';
@@ -11,17 +12,16 @@ import styles from './css/footer.module.css';
 
 const FooterView = ({ name, date, changeLang }) => {
   const { theme } = useContext(ThemeContext);
+  const { t } = useTranslation();
+  const authorCopyright = i18n.language === 'ua' ? 'Валерією Прошаченко' : name;
   return (
     <div className={styles.footerWrap}>
       <div>
         <p className={theme === 'dark' ? styles.copyright : `${styles.copyright} ${styles.light}`}>
-          Made by
-          {' '}
-          <span>{name}</span>
-          {' '}
-          — Copyright 2021
-          {' '}
+          {t('copyright', { name: authorCopyright })}
           {date}
+          {' '}
+
         </p>
       </div>
       <div className={styles.icons}>
