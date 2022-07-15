@@ -38,7 +38,8 @@
               "some": ["nesting", "id"]
             }
           }],
-          "react/require-default-props": "off"
+          "react/require-default-props": "off",
+          "no-underscore-dangle":"off"
     }
 
 }

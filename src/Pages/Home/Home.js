@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux/es/exports';
 import HomeView from './HomeView';
+import { getComments } from '../../store/comments/actions';
 
 const Home = () => {
   const [name] = useState('Alexander');
-  const [reviews, setReviews] = useState([]);
   const [timer, setTimer] = useState({
     ms: 0,
     s: 0,
@@ -38,17 +39,15 @@ const Home = () => {
     });
   };
 
+  const dispatch = useDispatch();
+  const comments = useSelector((state) => state.comments.payload);
+  const reviews = comments || [];
+
   useEffect(() => {
     const interval = setInterval(() => {
       run();
     }, 10);
-    fetch('https://jsonplaceholder.typicode.com/comments')
-      .then((response) => {
-        return response.json();
-      })
-      .then((data) => {
-        setReviews(data);
-      });
+    dispatch(getComments());
     return () => clearInterval(interval);
   }, []);
 

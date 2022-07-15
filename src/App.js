@@ -7,6 +7,7 @@ import {
 } from 'react-router-dom';
 import './i18n';
 import ThemeContext from './utils/context/theme-context';
+import Spin from './Components/Spin/Spin';
 import Home from './Pages/Home/Home';
 import themes from './utils/colorTheme/themes';
 import TableF from './Pages/Table/Table';
@@ -21,6 +22,7 @@ const App = () => {
     <ThemeContext.Provider value={value}>
       <Suspense fallback="Loading...">
         <div className="App">
+          <Spin />
           <Router>
             <Routes>
               <Route path="/web-react" element={<Home />} />
