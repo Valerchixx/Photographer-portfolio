@@ -39,7 +39,8 @@
             }
           }],
           "react/require-default-props": "off",
-          "no-underscore-dangle":"off"
+          "no-underscore-dangle":"off",
+          "default-param-last":"off"
     }
 
 }

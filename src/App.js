@@ -5,6 +5,8 @@ import {
   Routes,
   Route,
 } from 'react-router-dom';
+import { Provider } from 'react-redux';
+import store from './store/store';
 import './i18n';
 import ThemeContext from './utils/context/theme-context';
 import Spin from './Components/Spin/Spin';
@@ -19,20 +21,22 @@ const App = () => {
   }), [theme]);
 
   return (
-    <ThemeContext.Provider value={value}>
-      <Suspense fallback="Loading...">
-        <div className="App">
-          <Spin />
-          <Router>
-            <Routes>
-              <Route path="/web-react" element={<Home />} />
-              <Route path="/table/" element={<TableF />} />
-              <Route path="/table/:id" element={<TableF />} />
-            </Routes>
-          </Router>
-        </div>
-      </Suspense>
-    </ThemeContext.Provider>
+    <Provider store={store}>
+      <ThemeContext.Provider value={value}>
+        <Suspense fallback="Loading...">
+          <div className="App">
+            <Spin />
+            <Router>
+              <Routes>
+                <Route path="/web-react" element={<Home />} />
+                <Route path="/table/" element={<TableF />} />
+                <Route path="/table/:id" element={<TableF />} />
+              </Routes>
+            </Router>
+          </div>
+        </Suspense>
+      </ThemeContext.Provider>
+    </Provider>
   );
 };
 

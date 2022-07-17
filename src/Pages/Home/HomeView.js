@@ -1,11 +1,9 @@
 import React, { useContext } from 'react';
 import { useTranslation } from 'react-i18next';
 import PropTypes, { number, string } from 'prop-types';
-import { useDispatch } from 'react-redux';
 import Carousel from 'react-elastic-carousel';
 import i18n from '../../i18n';
 import ThemeContext from '../../utils/context/theme-context';
-import { updateComments } from '../../store/comments/actions';
 import profile from '../../images/profile.svg';
 import styles from './css/home.module.css';
 import Header from '../../Components/Header/Header';
@@ -33,7 +31,6 @@ const HomeView = ({
   const { theme } = useContext(ThemeContext);
   const { t } = useTranslation();
   const author = i18n.language === 'ua' ? 'Олександр' : name;
-  const dispatch = useDispatch();
   return (
     <div className={theme === 'dark' ? styles.wrappers : `${styles.wrappers} ${styles.light}`}>
       <div className={theme === 'dark' ? styles.header : `${styles.header} ${styles.light}`}>
@@ -90,9 +87,6 @@ const HomeView = ({
       </div>
       <div className={styles.reviews}>
         <Title text={t('reviews')} />
-        <div>
-          <button type="button" onClick={() => dispatch(updateComments())}>Update</button>
-        </div>
         <div className={styles.reviewsWrap}>
           <Carousel breakPoints={breakPoints}>
             {reviews && reviews.map((item) => (

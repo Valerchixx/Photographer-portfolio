@@ -1,10 +1,10 @@
 import { combineReducers } from 'redux';
-import commentsReducer from './comments/commentsReducer';
-import loaderReducer from './loader/loaderReducer';
+import reviewsReducer from './reviews/reviewsReducer';
+import loaderReducer from './loader/loadReducer';
 
 const rootReducer = combineReducers({
-  comments: commentsReducer,
-  loaderReducer
+  reviews: reviewsReducer,
+  loader: loaderReducer
 });
 
 export default rootReducer;

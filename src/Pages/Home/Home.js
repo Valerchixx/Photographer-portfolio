@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux/es/exports';
+import { getComments } from '../../store/reviews/actions';
 import HomeView from './HomeView';
-import { getComments } from '../../store/comments/actions';
 
 const Home = () => {
   const [name] = useState('Alexander');
+  const reviewsArr = useSelector(({ reviews }) => reviews.reviews);
   const [timer, setTimer] = useState({
     ms: 0,
     s: 0,
@@ -12,6 +13,7 @@ const Home = () => {
     h: 0,
   });
   const [time] = useState(+new Date());
+  const dispatch = useDispatch();
 
   const featuredRef = React.createRef(null);
   const projectsRef = React.createRef(null);
@@ -39,10 +41,6 @@ const Home = () => {
     });
   };
 
-  const dispatch = useDispatch();
-  const comments = useSelector((state) => state.comments.payload);
-  const reviews = comments || [];
-
   useEffect(() => {
     const interval = setInterval(() => {
       run();
@@ -59,7 +57,7 @@ const Home = () => {
       featuredRef={featuredRef}
       projectsRef={projectsRef}
       timer={timer}
-      reviews={reviews}
+      reviews={reviewsArr}
       breakPoints={breakPoints}
     />
 

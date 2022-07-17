@@ -1,13 +1,4 @@
-import { LOADER_OFF, LOADER_ON } from '../types';
+import { LOAD_OFF, LOAD_ON } from '../types';
 
-export function loaderOn() {
-  return {
-    type: LOADER_ON,
-
-  };
-}
-export function loaderOff() {
-  return {
-    type: LOADER_OFF
-  };
-}
+export const loaderOn = () => ({ type: LOAD_ON });
+export const loaderOff = () => ({ type: LOAD_OFF });
