@@ -1,7 +1,8 @@
-import { REVIEWS_LOAD } from '../types';
+import { REVIEWS_LOAD, LOAD_OFF, LOAD_ON } from '../types';
 
 const initialState = {
-  reviews: []
+  reviews: [],
+  loading: false
 };
 
 export default function reviewsReducer(state = initialState, action) {
@@ -10,6 +11,16 @@ export default function reviewsReducer(state = initialState, action) {
       return {
         ...state,
         reviews: action.payload
+      };
+    case LOAD_OFF:
+      return {
+        ...state,
+        loading: false
+      };
+    case LOAD_ON:
+      return {
+        ...state,
+        loading: true
       };
     default:
       return state;
